@@ -73,6 +73,7 @@
                 android:maxLines="1"
                 android:textSize="14sp"
                 android:textStyle="bold|italic"
+                android:textColor="@color/colorDarkBlue"
                 android:text="@{movie.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

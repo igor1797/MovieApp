@@ -22,16 +22,22 @@
             app:layout_constraintTop_toTopOf="parent"
             android:scaleType="fitXY"/>
 
-        <ImageView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/movieImage"
+            app:layout_constraintBottom_toBottomOf="@id/movieImageHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieImageHeader"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginStart="25dp"
-            imagePath="@{movie.posterPath}"
-            android:transitionName="movieImageTransition"
-            app:layout_constraintBottom_toBottomOf="@id/movieImageHeader"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/movieImageHeader"/>
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                imagePath="@{movie.posterPath}" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <ImageView
             android:id="@+id/star"
@@ -62,7 +68,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorDarkBlue"
             android:textSize="18sp"
             android:textStyle="bold|italic"
             android:text="@{movie.title}"
@@ -73,16 +79,29 @@
             app:layout_constraintTop_toBottomOf="@id/movieImageHeader"/>
 
         <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/movieImage"
+            app:layout_constraintTop_toBottomOf="@id/movieImage"
+            android:textColor="@color/colorDarkBlue"/>
+
+        <TextView
             android:id="@+id/movieDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@{movie.overview}"
+            android:textColor="@color/colorDarkBlue"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/movieImage"
-            app:layout_constraintTop_toBottomOf="@id/movieImage" />
+            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
