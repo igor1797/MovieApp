@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Movie app</string>
+    <string name="app_name" translatable="false">Movie app</string>
+    <string name="quoteText">Quote:</string>
+    <string name="descriptionText">Description:</string>
+    <string name="originalTitleText">Original title</string>
+    <string name="originalLanguageText">Original language</string>
+    <string name="budgetText">Budget</string>
+    <string name="releaseDateText">Release date</string>
+    <string name="statusText">Status</string>
+    <string name="adultText">Adult</string>
+    <string name="firstAirDateText">First air date</string>
+    <string name="lastAirDateText">Last air date</string>
+    <string name="typeText">Type</string>
+    <string name="numberOfEpisodesText">Number of episodes</string>
+    <string name="createdByText">Created by</string>
+    <string name="numberOfSeasonsText">Number of seasons</string>
+    <string name="actorsText">Actors</string>
 </resources>

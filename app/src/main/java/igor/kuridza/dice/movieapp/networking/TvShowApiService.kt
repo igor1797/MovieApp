@@ -1,6 +1,7 @@
 package igor.kuridza.dice.movieapp.networking
 
 import igor.kuridza.dice.movieapp.common.*
+import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.message.MessageResponse
 import igor.kuridza.dice.movieapp.model.review.GetReviewsResponse
@@ -12,17 +13,23 @@ interface TvShowApiService {
 
     @GET("$TV_SHOW/{$TV_SHOW_TYPE}")
     suspend fun getTvShowsByType(
-            @Path(TV_SHOW_TYPE) tvShowType: String,
-            @Query(LANGUAGE) language: String
+        @Path(TV_SHOW_TYPE) tvShowType: String,
+        @Query(LANGUAGE) language: String
     ): Response<GetTvShowsResponse>
+
+    @GET("$TV_SHOW/{$TV_SHOW_ID}")
+    suspend fun getPrimaryTvShowDetailsById(
+        @Path(TV_SHOW_ID) tvShowId: Int,
+        @Query(LANGUAGE) language: String
+    ): Response<TvShowDetails>
 
     @DELETE("$TV_SHOW/{$TV_SHOW_ID}/$RATING")
     suspend fun removeRatingForTvShow(@Path(TV_SHOW_ID) tvShowId: Int): Response<MessageResponse>
 
     @POST("$TV_SHOW/{$TV_SHOW_ID}/$RATING")
     suspend fun rateTvShow(
-            @Path(TV_SHOW_ID) tvShowId: Int,
-            @Body value: Number
+        @Path(TV_SHOW_ID) tvShowId: Int,
+        @Body value: Number
     ): Response<MessageResponse>
 
     @GET("$TV_SHOW/{$TV_SHOW_ID}/{$TV_SHOW_LIST_TYPE}")
@@ -40,7 +47,6 @@ interface TvShowApiService {
 
     @GET("$TV_SHOW/{$TV_SHOW_ID}/images")
     suspend fun getImagesThatBelongToTvShow(
-            @Path(TV_SHOW_ID) tvShowId: Int,
-            @Query(LANGUAGE) language: String
+        @Path(TV_SHOW_ID) tvShowId: Int
     ): Response<GetImagesResponse>
 }

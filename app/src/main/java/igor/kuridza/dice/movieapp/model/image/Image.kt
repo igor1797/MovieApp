@@ -7,8 +7,4 @@ data class Image(
     val filePath: String,
     val height: Int,
     val width: Int,
-    @SerializedName("vote_average")
-    val voteAverage: Int,
-    @SerializedName("vote_count")
-    val voteCount: Int
 )

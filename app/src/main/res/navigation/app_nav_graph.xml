@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/moviesFragment">
+    app:startDestination="@id/tvShowsFragment">
 
     <fragment
         android:id="@+id/moviesFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesFragment"
         android:label="movies_fragment"
-        tools:layout="@layout/movies_fragment" >
+        tools:layout="@layout/movies_fragment">
         <action
             android:id="@+id/goToMovieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
@@ -17,12 +17,57 @@
 
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.details.MovieDetailsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragment"
         android:label="MovieDetailsFragment">
 
         <argument
-            android:name="movie"
-            app:argType="igor.kuridza.dice.movieapp.model.movie.Movie"
-            />
+            android:name="movieId"
+            app:argType="integer" />
+
+        <argument
+            android:name="moviePosterPath"
+            app:argType="string" />
+        <action
+            android:id="@+id/goToImageFragment"
+            app:destination="@id/imageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvShowsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_shows.TvShowsFragment"
+        android:label="TvShowsFragment">
+        <action
+            android:id="@+id/goToTvShowDetailsFragment"
+            app:destination="@id/tvShowDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvShowDetailsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_show_details.TvShowDetailsFragment"
+        android:label="tv_show_details_fragment"
+        tools:layout="@layout/tv_show_details_fragment">
+
+        <argument
+            android:name="tvShowId"
+            app:argType="integer" />
+
+        <argument
+            android:name="tvShowPosterPath"
+            app:argType="string" />
+        <action
+            android:id="@+id/goToImageFragment"
+            app:destination="@id/imageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.images.ImageFragment"
+        android:label="ImageFragment">
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+        <argument
+            android:name="type"
+            app:argType="string" />
     </fragment>
 </navigation>

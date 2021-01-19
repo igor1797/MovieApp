@@ -28,8 +28,9 @@ class MovieAdapter(private val movieClickListener: MovieClickListener): ListAdap
 
         fun bindItem(movie: Movie, movieClickListener: MovieClickListener){
             binding.movie = movie
+            binding.moviePoster.transitionName = movie.posterPath
             binding.root.setOnClickListener {
-                movieClickListener.onMovieClickListener(movie)
+                movieClickListener.onMovieClickListener(movie, binding.moviePoster)
             }
         }
     }

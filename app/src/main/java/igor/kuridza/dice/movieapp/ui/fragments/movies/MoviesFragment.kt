@@ -1,15 +1,14 @@
 package igor.kuridza.dice.movieapp.ui.fragments.movies
 
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.widget.ImageView
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.common.DEFAULT_LANGUAGE
 import igor.kuridza.dice.movieapp.common.TOP_RATED
+import igor.kuridza.dice.movieapp.common.gone
+import igor.kuridza.dice.movieapp.common.visible
 import igor.kuridza.dice.movieapp.databinding.MoviesFragmentBinding
 import igor.kuridza.dice.movieapp.model.movie.Movie
 import igor.kuridza.dice.movieapp.model.resource.Error
@@ -17,24 +16,17 @@ import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
 import igor.kuridza.dice.movieapp.ui.adapters.MovieAdapter
 import igor.kuridza.dice.movieapp.ui.adapters.MovieClickListener
+import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class MoviesFragment : Fragment(), MovieClickListener {
+class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener {
 
     private val viewModel: MoviesViewModel by viewModel()
     private val movieAdapter = MovieAdapter(this)
-    private lateinit var binding: MoviesFragmentBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = MoviesFragmentBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun getLayoutResourceId(): Int = R.layout.movies_fragment
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setUpUi() {
         setUpRecycler()
         getMoviesByType(TOP_RATED, DEFAULT_LANGUAGE)
         observeMovies()
@@ -65,17 +57,28 @@ class MoviesFragment : Fragment(), MovieClickListener {
         //To do
     }
 
-    private fun handleLoading(){
-        //To do
+    private fun handleLoading() {
+        binding.apply {
+            loading.visible()
+            loadingBackground.visible()
+        }
     }
 
-    private fun handleSuccess(movies: List<Movie>){
+    private fun handleSuccess(movies: List<Movie>) {
         movieAdapter.submitList(movies)
-        //To do
+        binding.apply {
+            loading.gone()
+            loadingBackground.gone()
+        }
     }
 
-    override fun onMovieClickListener(movie: Movie) {
-        val direction = MoviesFragmentDirections.goToMovieDetailsFragment(movie)
-        findNavController().navigate(direction)
+    override fun onMovieClickListener(movie: Movie, moviePosterImage: ImageView) {
+        val extras = FragmentNavigatorExtras(
+            moviePosterImage to movie.posterPath!!
+        )
+
+        val direction =
+            MoviesFragmentDirections.goToMovieDetailsFragment(movie.id, movie.posterPath)
+        findNavController().navigate(direction, extras)
     }
 }

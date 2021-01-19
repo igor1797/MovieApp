@@ -1,6 +1,8 @@
 package igor.kuridza.dice.movieapp.networking
 
 import igor.kuridza.dice.movieapp.common.*
+import igor.kuridza.dice.movieapp.model.GetCreditsResponse
+import igor.kuridza.dice.movieapp.model.movie.MovieDetails
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.message.MessageResponse
 import igor.kuridza.dice.movieapp.model.movie.GetMoviesResponse
@@ -15,6 +17,18 @@ interface MovieApiService {
         @Path(MOVIE_TYPE) movieType: String,
         @Query(LANGUAGE) language: String
     ): Response<GetMoviesResponse>
+
+    @GET("$MOVIE/{$MOVIE_ID}")
+    suspend fun getPrimaryInformationAboutMovie(
+        @Path(MOVIE_ID) movieId: Int,
+        @Query(LANGUAGE) language: String
+    ): Response<MovieDetails>
+
+    @GET("$MOVIE/{$MOVIE_ID}/credits")
+    suspend fun getCastAndCrewForAMovie(
+        @Path(MOVIE_ID) movieId: Int,
+        @Query(LANGUAGE) language: String
+    ): Response<GetCreditsResponse>
 
     //The value is expected to be between 0.5 and 10.0.
     @POST("$MOVIE/{$MOVIE_ID}/$RATING")
@@ -41,7 +55,6 @@ interface MovieApiService {
 
     @GET("$MOVIE/{$MOVIE_ID}/images")
     suspend fun getImagesThatBelongToMovie(
-        @Path(MOVIE_ID) movieId: Int,
-        @Query(LANGUAGE) language: String
+        @Path(MOVIE_ID) movieId: Int
     ): Response<GetImagesResponse>
 }

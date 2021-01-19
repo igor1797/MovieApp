@@ -11,4 +11,7 @@
     <color name="colorDarkBlue">#0d253f</color>
     <color name="colorLightBlue">#01b4e4</color>
     <color name="colorBlack">#000000</color>
+    <color name="lightGray">#D3D3D3</color>
+    //Night
+    <color name="blackNight">#151515</color>
 </resources>
