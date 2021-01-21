@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="tvShowDetails"
+            type="igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/AppBarLayoutStyle"
+            android:id="@+id/appBarLayout"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/colorDarkBlue"
+                app:titleEnabled="false">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/tvShowImageHeader"
+                        imagePath="@{tvShowDetails.backdrop_path}"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tvShowImage"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="24dp"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvShowImageHeader">
+
+                        <ImageView
+                            android:id="@+id/tvShowPoster"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <ImageView
+                        android:id="@+id/star"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/ic_star"
+                        style="@style/StarStyle"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImage"
+                        app:layout_constraintStart_toEndOf="@id/tvShowImage"
+                        app:layout_constraintTop_toBottomOf="@id/tvShowImageHeader" />
+
+                    <TextView
+                        android:id="@+id/tvShowRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(tvShowDetails.vote_average)}"
+                        style="@style/RatingStyle"
+                        app:layout_constraintBottom_toBottomOf="@id/star"
+                        app:layout_constraintEnd_toEndOf="@id/star"
+                        app:layout_constraintStart_toStartOf="@id/star"
+                        app:layout_constraintTop_toTopOf="@id/star" />
+
+                    <TextView
+                        android:id="@+id/tvShowName"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center|start"
+                        android:text="@{tvShowDetails.name}"
+                        android:textSize="20sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImage"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/star"
+                        app:layout_constraintTop_toBottomOf="@id/tvShowImageHeader" />
+
+                    <View
+                        android:id="@+id/background"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/colorDarkBlue"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvShowGenres" />
+
+                    <TextView
+                        android:id="@+id/tvShowRuntime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="center|start"
+                        episodeRuntime="@{tvShowDetails.episode_run_time}"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
+                        app:layout_constraintStart_toEndOf="@id/tvShowImage"
+                        app:layout_constraintTop_toTopOf="@id/background" />
+
+
+                    <ImageView
+                        android:id="@+id/dot"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_dot"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
+                        app:layout_constraintStart_toEndOf="@id/tvShowRuntime"
+                        app:layout_constraintTop_toTopOf="@id/background" />
+
+                    <TextView
+                        android:id="@+id/tvShowGenres"
+                        genres="@{tvShowDetails.genres}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="8dp"
+                        android:ellipsize="end"
+                        android:gravity="center|start"
+                        android:maxLines="2"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/dot" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_back">
+
+                    <TextView
+                        android:id="@+id/toolbarTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="center|start"
+                        android:text="@{tvShowDetails.name}"
+                        android:textSize="20sp"
+                        android:visibility="gone"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </com.google.android.material.appbar.MaterialToolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/colorDarkBlue"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/quoteText"
+                    quoteVisibility="@{tvShowDetails.tagline}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/quoteText"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvShowQuote"
+                    quoteText="@{tvShowDetails.tagline}"
+                    quoteVisibility="@{tvShowDetails.tagline}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/quoteText"
+                    app:layout_constraintTop_toBottomOf="@id/quoteText" />
+
+                <TextView
+                    android:id="@+id/descriptionText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/descriptionText"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvShowQuote" />
+
+                <TextView
+                    android:id="@+id/movieDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{tvShowDetails.overview}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/descriptionText"
+                    app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+
+                <View
+                    android:id="@+id/dividerBelowDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    style="@style/DividerStyle"
+                    app:layout_constraintTop_toBottomOf="@id/movieDescription" />
+
+                <TextView
+                    android:id="@+id/originalTitleText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/originalTitleText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/originalLanguageText"
+                    app:layout_constraintStart_toStartOf="@id/descriptionText"
+                    app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
+
+                <TextView
+                    android:id="@+id/originalTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{tvShowDetails.original_name}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/originalLanguage"
+                    app:layout_constraintStart_toStartOf="@id/originalTitleText"
+                    app:layout_constraintTop_toBottomOf="@id/originalTitleText" />
+
+                <TextView
+                    android:id="@+id/originalLanguageText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/originalLanguageText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/originalTitleText"
+                    app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
+
+                <TextView
+                    android:id="@+id/originalLanguage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{tvShowDetails.original_language}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/originalLanguageText"
+                    app:layout_constraintTop_toBottomOf="@id/originalLanguageText" />
+
+                <TextView
+                    android:id="@+id/firstAirDateText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/firstAirDateText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
+                    app:layout_constraintStart_toStartOf="@id/originalTitle"
+                    app:layout_constraintTop_toBottomOf="@id/originalTitle" />
+
+                <TextView
+                    android:id="@+id/firstAirDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    android:text="@{tvShowDetails.first_air_date}"
+                    app:layout_constraintEnd_toStartOf="@id/lastAirDate"
+                    app:layout_constraintStart_toStartOf="@id/firstAirDateText"
+                    app:layout_constraintTop_toBottomOf="@id/firstAirDateText" />
+
+                <TextView
+                    android:id="@+id/lastAirDateText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lastAirDateText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/firstAirDateText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/originalLanguage" />
+
+                <TextView
+                    android:id="@+id/lastAirDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{tvShowDetails.last_air_date}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/lastAirDateText"
+                    app:layout_constraintTop_toBottomOf="@id/lastAirDateText" />
+
+                <TextView
+                    android:id="@+id/statusText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/statusText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
+                    app:layout_constraintStart_toStartOf="@id/firstAirDateText"
+                    app:layout_constraintTop_toBottomOf="@id/firstAirDate" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{tvShowDetails.status}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/type"
+                    app:layout_constraintStart_toStartOf="@id/statusText"
+                    app:layout_constraintTop_toBottomOf="@id/statusText" />
+
+                <TextView
+                    android:id="@+id/typeText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/typeText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/lastAirDateText" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    android:text="@{tvShowDetails.type}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/typeText"
+                    app:layout_constraintTop_toBottomOf="@id/typeText" />
+
+                <TextView
+                    android:id="@+id/numberOfEpisodesText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/numberOfEpisodesText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
+                    app:layout_constraintStart_toStartOf="@id/firstAirDateText"
+                    app:layout_constraintTop_toBottomOf="@id/status" />
+
+                <TextView
+                    android:id="@+id/numberOfEpisodes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{String.valueOf(tvShowDetails.number_of_episodes)}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/numberOfSeasons"
+                    app:layout_constraintStart_toStartOf="@id/numberOfEpisodesText"
+                    app:layout_constraintTop_toBottomOf="@id/numberOfEpisodesText" />
+
+                <TextView
+                    android:id="@+id/numberOfSeasonsText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/numberOfSeasonsText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/numberOfEpisodesText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/lastAirDateText" />
+
+                <TextView
+                    android:id="@+id/numberOfSeasons"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    android:text="@{String.valueOf(tvShowDetails.number_of_seasons)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/numberOfSeasonsText"
+                    app:layout_constraintTop_toTopOf="@id/numberOfEpisodes" />
+
+                <TextView
+                    android:id="@+id/createdByText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/createdByText"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/numberOfEpisodes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/numberOfEpisodesText" />
+
+                <TextView
+                    android:id="@+id/createdBy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    createdBy="@{tvShowDetails.created_by}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/createdByText"
+                    app:layout_constraintTop_toBottomOf="@id/createdByText" />
+
+                <View
+                    android:id="@+id/dividerBelowTvShowInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    style="@style/DividerStyle"
+                    app:layout_constraintTop_toBottomOf="@id/createdBy" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

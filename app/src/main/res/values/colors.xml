@@ -14,4 +14,6 @@
     <color name="lightGray">#D3D3D3</color>
     //Night
     <color name="blackNight">#151515</color>
+    <color name="whiteSmoke">#f5f5f5</color>
+    <color name="silver">#b8b8b8</color>
 </resources>

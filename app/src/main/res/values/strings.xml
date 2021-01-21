@@ -15,4 +15,18 @@
     <string name="createdByText">Created by</string>
     <string name="numberOfSeasonsText">Number of seasons</string>
     <string name="actorsText">Actors</string>
+    <string name="moviesText">Movies</string>
+    <string name="tvShowsText">Tv shows</string>
+    <string name="settingsText">Settings</string>
+    <string name="themeText">Theme</string>
+    <string name="lightModeText">Light mode</string>
+    <string name="darkModeText">Dark mode</string>
+    <string name="filterText">Filter</string>
+    <string name="chooseMovieCategoryText">Choose movie category</string>
+    <string name="topRated">Top rated</string>
+    <string name="popularText">Popular</string>
+    <string name="upcomingText">Upcoming</string>
+    <string name="applyText">Apply</string>
+    <string name="chooseTvShowCategoryText">Choose tv show category</string>
+    <string name="onTheAir">On the air</string>
 </resources>

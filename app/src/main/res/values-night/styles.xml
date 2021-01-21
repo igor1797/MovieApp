@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StarStyle" parent="Theme.MovieApp">
+        <item name="tint">@color/colorLightBlue</item>
+    </style>
+
+    <style name="RatingStyle" parent="Theme.MovieApp">
+        <item name="android:textColor">@color/colorDarkBlue</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppBarLayoutStyle" parent="Theme.MovieApp">
+        <item name="android:background">@color/blackNight</item>
+    </style>
+
+    <style name="DividerStyle" parent="Theme.MovieApp">
+        <item name="android:background">@color/colorLightBlue</item>
+    </style>
+</resources>

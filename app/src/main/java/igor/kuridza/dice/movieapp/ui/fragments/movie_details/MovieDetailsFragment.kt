@@ -1,9 +1,11 @@
 package igor.kuridza.dice.movieapp.ui.fragments.movie_details
 
 import android.os.Bundle
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.common.*
 import igor.kuridza.dice.movieapp.databinding.MovieDetailsFragmentBinding

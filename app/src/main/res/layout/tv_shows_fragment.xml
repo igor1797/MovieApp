@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,7 +10,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.fragments.movies.MoviesFragment">
+            tools:context=".ui.fragments.tv_shows.TvShowsFragment">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
@@ -20,11 +19,11 @@
                 android:background="@color/colorDarkBlue"
                 app:layout_constraintTop_toTopOf="parent"
                 app:menu="@menu/filter_menu"
-                app:title="Top rated"
+                app:title="Popular"
                 app:titleTextColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/moviesRecycler"
+                android:id="@+id/tvShowsRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -48,18 +47,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/backgroundBehindBottomSheet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@color/colorDarkBlue"
+                android:visibility="gone" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/backgroundBehindBottomSheet"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0"
-            android:background="@color/colorDarkBlue"
-            android:visibility="gone" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/chooseMovieCategoryBottomSheet"
+            android:id="@+id/chooseTvShowCategoryBottomSheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/top_rounded_background"
@@ -71,11 +71,11 @@
                 android:id="@+id/bottomSheetHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:padding="24dp"
-                android:text="@string/chooseMovieCategoryText"
+                android:text="@string/chooseTvShowCategoryText"
                 android:textColor="@color/colorDarkBlue"
                 android:textSize="22sp"
-                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,37 +90,37 @@
                 android:id="@+id/categoryGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/topRated"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/topRated"
                     android:textColor="@color/colorDarkBlue"
-                    android:textSize="18sp"
                     android:checked="true"
-                    android:layout_marginTop="8dp" />
+                    android:textSize="18sp" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/popular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/popularText"
                     android:textColor="@color/colorDarkBlue"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp" />
+                    android:textSize="18sp" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/upcoming"
+                    android:id="@+id/onTheAir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/upcomingText"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/onTheAir"
                     android:textColor="@color/colorDarkBlue"
-                    android:textSize="18sp"
-                    android:layout_marginTop="8dp" />
+                    android:textSize="18sp" />
 
             </RadioGroup>
 
@@ -128,19 +128,18 @@
                 android:id="@+id/apply"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/categoryGroup"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/colorDarkBlue"
+                android:text="@string/applyText"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="8dp"
-                android:text="@string/applyText"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"
-                app:cornerRadius="8dp"
-                android:backgroundTint="@color/colorDarkBlue"
-                android:textColor="@color/white" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryGroup" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_bar_navigation"
+    app:startDestination="@id/moviesFragment">
+
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesFragment"
+        android:label="MoviesFragment"
+        tools:layout="@layout/movies_fragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/tvShowsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_shows.TvShowsFragment"
+        android:label="TvShowsFragment"
+        tools:layout="@layout/tv_shows_fragment" />
+
+
+</navigation>

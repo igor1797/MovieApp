@@ -3,17 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/tvShowsFragment">
-
-    <fragment
-        android:id="@+id/moviesFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesFragment"
-        android:label="movies_fragment"
-        tools:layout="@layout/movies_fragment">
-        <action
-            android:id="@+id/goToMovieDetailsFragment"
-            app:destination="@id/movieDetailsFragment" />
-    </fragment>
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -30,14 +20,6 @@
         <action
             android:id="@+id/goToImageFragment"
             app:destination="@id/imageFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/tvShowsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_shows.TvShowsFragment"
-        android:label="TvShowsFragment">
-        <action
-            android:id="@+id/goToTvShowDetailsFragment"
-            app:destination="@id/tvShowDetailsFragment" />
     </fragment>
 
     <fragment
@@ -57,6 +39,7 @@
             android:id="@+id/goToImageFragment"
             app:destination="@id/imageFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/imageFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.images.ImageFragment"
@@ -69,5 +52,18 @@
         <argument
             android:name="type"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/goToTvShowDetailsFragment"
+            app:destination="@id/tvShowDetailsFragment" />
+        <action
+            android:id="@+id/goToMovieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
     </fragment>
 </navigation>

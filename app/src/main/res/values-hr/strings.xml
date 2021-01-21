@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quoteText">Citat:</string>
+    <string name="descriptionText">Opis:</string>
+    <string name="originalTitleText">Originalni naslov</string>
+    <string name="originalLanguageText">Originalni jezik</string>
+    <string name="budgetText">Budžet</string>
+    <string name="releaseDateText">Datum izlazka</string>
+    <string name="statusText">Status</string>
+    <string name="adultText">Za odrasle</string>
+    <string name="firstAirDateText">Datum prvog emitiranja</string>
+    <string name="lastAirDateText">Datum zadnjeg emitiranja</string>
+    <string name="typeText">Vrsta</string>
+    <string name="numberOfEpisodesText">Broj epizoda</string>
+    <string name="numberOfSeasonsText">Broj sezona</string>
+    <string name="createdByText">Napravili</string>
+</resources>
