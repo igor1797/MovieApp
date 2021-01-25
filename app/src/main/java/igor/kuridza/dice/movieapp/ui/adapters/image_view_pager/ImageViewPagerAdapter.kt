@@ -1,4 +1,4 @@
-package igor.kuridza.dice.movieapp.ui.adapters
+package igor.kuridza.dice.movieapp.ui.adapters.image_view_pager
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -35,11 +35,8 @@ class ImageViewPagerAdapter : RecyclerView.Adapter<ImageViewPagerAdapter.ImageVi
     inner class ImageViewPagerHolder(private val bindingItem: ImageItemBinding) :
         RecyclerView.ViewHolder(bindingItem.root) {
 
-        fun bindItem(_image: Image) {
-            bindingItem.apply {
-                this.image = _image
-                executePendingBindings()
-            }
+        fun bindItem(image: Image) {
+            bindingItem.image = image
         }
     }
 }

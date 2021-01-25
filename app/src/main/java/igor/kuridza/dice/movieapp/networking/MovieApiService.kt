@@ -57,4 +57,10 @@ interface MovieApiService {
     suspend fun getImagesThatBelongToMovie(
         @Path(MOVIE_ID) movieId: Int
     ): Response<GetImagesResponse>
+
+    @GET("search/$MOVIE")
+    suspend fun searchMovies(
+        @Query(QUERY) searchQuery: String,
+        @Query(LANGUAGE) language: String
+    ): Response<GetMoviesResponse>
 }

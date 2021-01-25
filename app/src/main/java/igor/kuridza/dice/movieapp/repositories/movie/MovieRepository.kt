@@ -12,35 +12,37 @@ import retrofit2.Response
 
 interface MovieRepository {
 
-    suspend fun getMoviesByType(
+    fun getMoviesByType(
         movieType: String,
         language: String
     ): Flow<Resource<GetMoviesResponse>>
 
-    suspend fun getPrimaryInformationAboutMovie(
+    fun getPrimaryInformationAboutMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<MovieDetails>>
 
-    suspend fun getCastAndCrewForAMovie(
+    fun getCastAndCrewForAMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<GetCreditsResponse>>
 
-    suspend fun rateMovie(movieId: Int, ratingValue: Number): Response<MessageResponse>
-
-    suspend fun removeRatingForMovie(movieId: Int): Response<MessageResponse>
-
-    suspend fun getListOfMoviesForMovie(
+    fun getListOfMoviesForMovie(
         movieId: Number,
         movieListType: String,
         language: String
     ): Flow<Resource<GetMoviesResponse>>
 
-    suspend fun getUserReviewsForMovie(
+    fun getUserReviewsForMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<GetReviewsResponse>>
 
-    suspend fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>>
+    fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>>
+
+    fun searchMovies(searchQuery: String, language: String): Flow<Resource<GetMoviesResponse>>
+
+    suspend fun rateMovie(movieId: Int, ratingValue: Number): Response<MessageResponse>
+
+    suspend fun removeRatingForMovie(movieId: Int): Response<MessageResponse>
 }

@@ -29,4 +29,7 @@
     <string name="applyText">Apply</string>
     <string name="chooseTvShowCategoryText">Choose tv show category</string>
     <string name="onTheAir">On the air</string>
+    <string name="searchText">Search</string>
+    <string name="searchQueryInfoMessageText">Search query must contain one character!</string>
+    <string name="imageNumberText">%d/%d</string>
 </resources>

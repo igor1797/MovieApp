@@ -1,17 +1,15 @@
 package igor.kuridza.dice.movieapp.ui.fragments.images
 
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import igor.kuridza.dice.movieapp.R
-import igor.kuridza.dice.movieapp.common.TV_SHOW
 import igor.kuridza.dice.movieapp.databinding.ImageFragmentBinding
 import igor.kuridza.dice.movieapp.model.image.Image
 import igor.kuridza.dice.movieapp.model.resource.Error
 import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
-import igor.kuridza.dice.movieapp.ui.adapters.ImageViewPagerAdapter
+import igor.kuridza.dice.movieapp.ui.adapters.image_view_pager.ImageViewPagerAdapter
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -63,7 +61,11 @@ class ImageFragment : BaseFragment<ImageFragmentBinding>() {
     private fun initPageChangeCallback() {
         imagePageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.imageNumber.text = "${position + 1}/${imageViewPagerAdapter.itemCount}"
+                binding.imageNumber.text = getString(
+                    R.string.imageNumberText,
+                    position + 1,
+                    imageViewPagerAdapter.itemCount
+                )
             }
         }
     }
@@ -79,7 +81,8 @@ class ImageFragment : BaseFragment<ImageFragmentBinding>() {
 
     private fun handleSuccess(images: List<Image>) {
         imageViewPagerAdapter.setImages(images)
-        binding.imageNumber.text = "1/${imageViewPagerAdapter.itemCount}"
+        binding.imageNumber.text =
+            getString(R.string.imageNumberText, 1, imageViewPagerAdapter.itemCount)
     }
 
     override fun onDestroyView() {

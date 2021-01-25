@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorDarkBlue"
                 app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/filter_menu"
+                app:menu="@menu/toolbar_menu"
                 app:title="Popular"
                 app:titleTextColor="@color/white" />
 

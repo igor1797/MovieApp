@@ -1,6 +1,7 @@
 package igor.kuridza.dice.movieapp.networking
 
 import igor.kuridza.dice.movieapp.common.*
+import igor.kuridza.dice.movieapp.model.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.message.MessageResponse
@@ -23,6 +24,12 @@ interface TvShowApiService {
         @Query(LANGUAGE) language: String
     ): Response<TvShowDetails>
 
+    @GET("$TV_SHOW/{$TV_SHOW_ID}/credits")
+    suspend fun getCastAndCrewForTvShow(
+        @Path(TV_SHOW_ID) tvShowId: Int,
+        @Query(LANGUAGE) language: String
+    ): Response<GetCreditsResponse>
+
     @DELETE("$TV_SHOW/{$TV_SHOW_ID}/$RATING")
     suspend fun removeRatingForTvShow(@Path(TV_SHOW_ID) tvShowId: Int): Response<MessageResponse>
 
@@ -41,12 +48,18 @@ interface TvShowApiService {
 
     @GET("$TV_SHOW/{$TV_SHOW_ID}/reviews")
     suspend fun getUserReviewsForTvShow(
-            @Path(TV_SHOW_ID) tvShowId: Int,
-            @Query(LANGUAGE) language: String
+        @Path(TV_SHOW_ID) tvShowId: Int,
+        @Query(LANGUAGE) language: String
     ): Response<GetReviewsResponse>
 
     @GET("$TV_SHOW/{$TV_SHOW_ID}/images")
     suspend fun getImagesThatBelongToTvShow(
         @Path(TV_SHOW_ID) tvShowId: Int
     ): Response<GetImagesResponse>
+
+    @GET("search/$TV_SHOW")
+    suspend fun searchTvShows(
+        @Query(QUERY) searchQuery: String,
+        @Query(LANGUAGE) language: String
+    ): Response<GetTvShowsResponse>
 }

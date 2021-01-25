@@ -29,6 +29,9 @@ class MovieDetailsViewModel(
             movieRepository.getPrimaryInformationAboutMovie(movieId, language).collect { data ->
                 _movieDetails.postValue(data)
             }
+            movieRepository.getCastAndCrewForAMovie(movieId, language).collect { data ->
+                _movieCredits.postValue(data)
+            }
         }
     }
 }

@@ -10,13 +10,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.common.*
 import igor.kuridza.dice.movieapp.databinding.MoviesFragmentBinding
+import igor.kuridza.dice.movieapp.model.DetailsItemType
 import igor.kuridza.dice.movieapp.model.movie.Movie
 import igor.kuridza.dice.movieapp.model.resource.Error
 import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
 import igor.kuridza.dice.movieapp.ui.activities.MainActivity
-import igor.kuridza.dice.movieapp.ui.adapters.MovieAdapter
-import igor.kuridza.dice.movieapp.ui.adapters.MovieClickListener
+import igor.kuridza.dice.movieapp.ui.adapters.movie.MovieAdapter
+import igor.kuridza.dice.movieapp.ui.adapters.movie.MovieClickListener
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import igor.kuridza.dice.movieapp.ui.fragments.home.HomeFragmentDirections
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -24,8 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener {
 
     private val viewModel: MoviesViewModel by viewModel()
-
-    private val movieAdapter = MovieAdapter(this)
+    private val movieAdapter = MovieAdapter(this, DetailsItemType)
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetCallback: BottomSheetBehavior.BottomSheetCallback
 
@@ -34,7 +34,7 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
     override fun setUpUi() {
         setUpRecycler()
         observeMovies()
-        setFilterIconOnClickListener()
+        setToolbarIconsOnClickListener()
 
         initBehavior()
         initBottomSheetCallback()
@@ -68,17 +68,25 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
         }
     }
 
-    private fun setFilterIconOnClickListener() {
+    private fun setToolbarIconsOnClickListener() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.filter -> showMovieCategoryPicker()
-                else -> true
+                R.id.search -> showSearchMoviesFragment()
+                else -> false
             }
         }
     }
 
     private fun showMovieCategoryPicker(): Boolean {
         expandBottomSheet()
+        return true
+    }
+
+    private fun showSearchMoviesFragment(): Boolean {
+        val controller =
+            Navigation.findNavController(activity as MainActivity, R.id.mainNavHostFragment)
+        controller.navigate(R.id.goToSearchMoviesFragment)
         return true
     }
 
@@ -200,11 +208,15 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
     }
 
     override fun onMovieClickListener(movie: Movie, moviePosterImage: ImageView) {
-        val extras = FragmentNavigatorExtras(
-            moviePosterImage to movie.posterPath!!
-        )
-
-        val direction = HomeFragmentDirections.goToMovieDetailsFragment(movie.id, movie.posterPath)
+        val posterPath: String? = movie.posterPath
+        val extras =
+            if (posterPath.isNullOrEmpty()) {
+                FragmentNavigatorExtras(moviePosterImage to "EmptyOrNullImagePath")
+            } else {
+                FragmentNavigatorExtras(moviePosterImage to posterPath)
+            }
+        val direction =
+            HomeFragmentDirections.goToMovieDetailsFragment(movie.id, movie.posterPath ?: "")
         val controller =
             Navigation.findNavController(activity as MainActivity, R.id.mainNavHostFragment)
         controller.navigate(direction, extras)

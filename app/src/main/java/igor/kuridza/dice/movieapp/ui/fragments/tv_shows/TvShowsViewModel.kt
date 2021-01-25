@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import igor.kuridza.dice.movieapp.common.ON_THE_AIR
 import igor.kuridza.dice.movieapp.common.POPULAR
 import igor.kuridza.dice.movieapp.common.TOP_RATED
-import igor.kuridza.dice.movieapp.common.UPCOMING
 import igor.kuridza.dice.movieapp.model.resource.Resource
 import igor.kuridza.dice.movieapp.model.tv_show.GetTvShowsResponse
 import igor.kuridza.dice.movieapp.repositories.tv_show.TvShowRepository

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment<viewBinding : ViewDataBinding> : Fragment() {
 
     protected lateinit var binding: viewBinding private set
-    protected var savedInstanceState: Bundle? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +25,6 @@ abstract class BaseFragment<viewBinding : ViewDataBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpUi()
-        this.savedInstanceState = savedInstanceState
     }
 
     abstract fun getLayoutResourceId(): Int

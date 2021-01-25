@@ -10,13 +10,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.common.*
 import igor.kuridza.dice.movieapp.databinding.TvShowsFragmentBinding
+import igor.kuridza.dice.movieapp.model.DetailsItemType
 import igor.kuridza.dice.movieapp.model.resource.Error
 import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
 import igor.kuridza.dice.movieapp.model.tv_show.TvShow
 import igor.kuridza.dice.movieapp.ui.activities.MainActivity
-import igor.kuridza.dice.movieapp.ui.adapters.TvShowAdapter
-import igor.kuridza.dice.movieapp.ui.adapters.TvShowClickListener
+import igor.kuridza.dice.movieapp.ui.adapters.tv_show.TvShowAdapter
+import igor.kuridza.dice.movieapp.ui.adapters.tv_show.TvShowClickListener
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import igor.kuridza.dice.movieapp.ui.fragments.home.HomeFragmentDirections
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -24,7 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListener {
 
     private val viewModel: TvShowsViewModel by viewModel()
-    private val tvShowAdapter = TvShowAdapter(this)
+    private val tvShowAdapter = TvShowAdapter(this, DetailsItemType)
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var bottomSheetCallback: BottomSheetBehavior.BottomSheetCallback
 
@@ -41,7 +42,7 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
         addBottomSheetCallback()
         setApplyButtonOnClickListener()
         observeSelectedCategory()
-        setFilterIconOnClickListener()
+        setToolbarIconsOnClickListener()
     }
 
     private fun observeSelectedCategory() {
@@ -67,17 +68,25 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
         }
     }
 
-    private fun setFilterIconOnClickListener() {
+    private fun setToolbarIconsOnClickListener() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.filter -> showMovieCategoryPicker()
-                else -> true
+                R.id.search -> showSearchTvShowsFragment()
+                else -> false
             }
         }
     }
 
     private fun showMovieCategoryPicker(): Boolean {
         expandBottomSheet()
+        return true
+    }
+
+    private fun showSearchTvShowsFragment(): Boolean {
+        val controller =
+            Navigation.findNavController(activity as MainActivity, R.id.mainNavHostFragment)
+        controller.navigate(R.id.goToSearchTvShowsFragment)
         return true
     }
 
@@ -88,9 +97,9 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
     private fun observeTvShows() {
         viewModel.tvShows.observe(viewLifecycleOwner) { response ->
             when (response) {
-                is Loading -> handleLoading()
                 is Error -> handleError(response.message)
                 is Success -> handleSuccess(response.data.tvShowList)
+                Loading -> handleLoading()
             }
         }
     }
@@ -199,12 +208,15 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
     }
 
     override fun onTvShowClickListener(tvShow: TvShow, tvShowPosterImage: ImageView) {
-        val extras = FragmentNavigatorExtras(
-            tvShowPosterImage to tvShow.posterPath!!
-        )
-
+        val posterPath: String? = tvShow.posterPath
+        val extras =
+            if (posterPath.isNullOrEmpty()) {
+                FragmentNavigatorExtras(tvShowPosterImage to "EmptyOrNullImagePath")
+            } else {
+                FragmentNavigatorExtras(tvShowPosterImage to posterPath)
+            }
         val direction =
-            HomeFragmentDirections.goToTvShowDetailsFragment(tvShow.id, tvShow.posterPath)
+            HomeFragmentDirections.goToTvShowDetailsFragment(tvShow.id, tvShow.posterPath ?: "")
         val controller =
             Navigation.findNavController(activity as MainActivity, R.id.mainNavHostFragment)
         controller.navigate(direction, extras)

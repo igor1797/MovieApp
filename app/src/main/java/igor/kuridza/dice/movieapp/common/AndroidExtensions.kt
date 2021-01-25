@@ -1,8 +1,10 @@
 package igor.kuridza.dice.movieapp.common
 
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import igor.kuridza.dice.movieapp.R
 
 fun ImageView.loadImage(imageUrl: String?) {
@@ -21,12 +23,6 @@ fun ImageView.loadImage(imageUrl: String?) {
         .into(this)
 }
 
-fun Int.toHoursAndMinutes(): String {
-    val hours = this / 60
-    val remainingMinutes = this - hours * 60
-    return when {
-        hours == 0 -> "${remainingMinutes}m"
-        remainingMinutes == 0 -> "${hours}h"
-        else -> "${hours}h ${remainingMinutes}m"
-    }
+fun Fragment.showSnackbar(message: String) {
+    Snackbar.make(this.requireView().rootView, message, Snackbar.LENGTH_SHORT).show()
 }

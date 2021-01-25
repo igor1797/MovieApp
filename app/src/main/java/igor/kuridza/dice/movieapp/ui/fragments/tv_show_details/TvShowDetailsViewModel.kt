@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
+import igor.kuridza.dice.movieapp.model.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
+import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.repositories.tv_show.TvShowRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -19,10 +20,17 @@ class TvShowDetailsViewModel(
     val tvShowDetails: LiveData<Resource<TvShowDetails>>
         get() = _tvShowDetails
 
+    private val _tvShowCredits = MutableLiveData<Resource<GetCreditsResponse>>()
+    val tvShowCredits: LiveData<Resource<GetCreditsResponse>>
+        get() = _tvShowCredits
+
     fun getPrimaryInformationAboutTvShow(tvShowId: Int, language: String) {
         viewModelScope.launch(Dispatchers.IO) {
             tvShowRepository.getPrimaryTvShowDetailsById(tvShowId, language).collect { data ->
                 _tvShowDetails.postValue(data)
+            }
+            tvShowRepository.getCastAndCrewForTvShow(tvShowId, language).collect { data ->
+                _tvShowCredits.postValue(data)
             }
         }
     }

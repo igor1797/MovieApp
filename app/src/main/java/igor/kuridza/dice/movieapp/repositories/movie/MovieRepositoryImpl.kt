@@ -14,28 +14,36 @@ class MovieRepositoryImpl(
     private val movieApiService: MovieApiService
 ): MovieRepository {
 
-    override suspend fun getMoviesByType(
+    override fun getMoviesByType(
         movieType: String,
         language: String
     ): Flow<Resource<GetMoviesResponse>> =
-        makeNetworkRequest(movieType, language) { _movieType, _language ->
-            movieApiService.getMoviesByType(_movieType, _language)
+        makeNetworkRequest {
+            movieApiService.getMoviesByType(movieType, language)
         }
 
-    override suspend fun getPrimaryInformationAboutMovie(
+    override fun searchMovies(
+        searchQuery: String,
+        language: String
+    ): Flow<Resource<GetMoviesResponse>> =
+        makeNetworkRequest { ->
+            movieApiService.searchMovies(searchQuery, language)
+        }
+
+    override fun getPrimaryInformationAboutMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<MovieDetails>> =
-        makeNetworkRequest(movieId, language) { _movieId, _language ->
-            movieApiService.getPrimaryInformationAboutMovie(_movieId, _language)
+        makeNetworkRequest {
+            movieApiService.getPrimaryInformationAboutMovie(movieId, language)
         }
 
-    override suspend fun getCastAndCrewForAMovie(
+    override fun getCastAndCrewForAMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<GetCreditsResponse>> =
-        makeNetworkRequest(movieId, language) { _movieId, _language ->
-            movieApiService.getCastAndCrewForAMovie(_movieId, _language)
+        makeNetworkRequest {
+            movieApiService.getCastAndCrewForAMovie(movieId, language)
         }
 
     override suspend fun rateMovie(movieId: Int, ratingValue: Number) =
@@ -44,29 +52,25 @@ class MovieRepositoryImpl(
     override suspend fun removeRatingForMovie(movieId: Int) =
         movieApiService.removeRatingForMovie(movieId)
 
-    override suspend fun getListOfMoviesForMovie(
+    override fun getListOfMoviesForMovie(
         movieId: Number,
         movieListType: String,
         language: String
     ): Flow<Resource<GetMoviesResponse>> =
-        makeNetworkRequest(
-            movieId,
-            movieListType,
-            language
-        ) { _movieId, _movieListType, _language ->
-            movieApiService.getListOfMoviesForMovie(_movieId.toInt(), _movieListType, _language)
+        makeNetworkRequest {
+            movieApiService.getListOfMoviesForMovie(movieId.toInt(), movieListType, language)
         }
 
-    override suspend fun getUserReviewsForMovie(
+    override fun getUserReviewsForMovie(
         movieId: Int,
         language: String
     ): Flow<Resource<GetReviewsResponse>> =
-        makeNetworkRequest(movieId, language) { _movieId, _language ->
-            movieApiService.getUserReviewsForMovie(_movieId, _language)
+        makeNetworkRequest {
+            movieApiService.getUserReviewsForMovie(movieId, language)
         }
 
-    override suspend fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>> =
-        makeNetworkRequest(movieId) { _movieId ->
-            movieApiService.getImagesThatBelongToMovie(_movieId)
+    override fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>> =
+        makeNetworkRequest {
+            movieApiService.getImagesThatBelongToMovie(movieId)
         }
 }

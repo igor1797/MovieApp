@@ -20,6 +20,9 @@
         <action
             android:id="@+id/goToImageFragment"
             app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/goToPersonWikipediaInfoFragment"
+            app:destination="@id/personWikipediaInfoFragment" />
     </fragment>
 
     <fragment
@@ -38,6 +41,9 @@
         <action
             android:id="@+id/goToImageFragment"
             app:destination="@id/imageFragment" />
+        <action
+            android:id="@+id/goToPersonWikipediaInfoFragment"
+            app:destination="@id/personWikipediaInfoFragment" />
     </fragment>
 
     <fragment
@@ -65,5 +71,37 @@
         <action
             android:id="@+id/goToMovieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/goToSearchMoviesFragment"
+            app:destination="@id/searchMoviesFragment" />
+        <action
+            android:id="@+id/goToSearchTvShowsFragment"
+            app:destination="@id/searchTvShowsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMoviesFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.search.movies.SearchMoviesFragment"
+        android:label="search_movies_fragment"
+        tools:layout="@layout/search_movies_fragment">
+        <action
+            android:id="@+id/goToMovieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchTvShowsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.search.tv_shows.SearchTvShowsFragment"
+        android:label="search_tv_shows_fragment"
+        tools:layout="@layout/search_tv_shows_fragment">
+        <action
+            android:id="@+id/goToTvShowDetailsFragment"
+            app:destination="@id/tvShowDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personWikipediaInfoFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.person.PersonWikipediaInfoFragment"
+        android:label="PersonWikipediaInfoFragment">
+        <argument
+            android:name="person"
+            app:argType="igor.kuridza.dice.movieapp.model.Person"></argument>
     </fragment>
 </navigation>

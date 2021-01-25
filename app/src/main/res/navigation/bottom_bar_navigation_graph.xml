@@ -23,5 +23,4 @@
         android:label="TvShowsFragment"
         tools:layout="@layout/tv_shows_fragment" />
 
-
 </navigation>

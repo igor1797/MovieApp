@@ -1,11 +1,13 @@
-package igor.kuridza.dice.movieapp.ui.adapters
+package igor.kuridza.dice.movieapp.ui.adapters.data_binding
 
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import igor.kuridza.dice.movieapp.common.convertToHoursAndMinutes
 import igor.kuridza.dice.movieapp.common.gone
 import igor.kuridza.dice.movieapp.common.loadImage
-import igor.kuridza.dice.movieapp.common.toHoursAndMinutes
 import igor.kuridza.dice.movieapp.common.visible
 import igor.kuridza.dice.movieapp.model.CreatedBy
 import igor.kuridza.dice.movieapp.model.genre.Genre
@@ -26,10 +28,23 @@ object DataBindingAdapter {
         } ?: "UNKNOWN GENRES"
     }
 
+    @BindingAdapter("person_name")
+    @JvmStatic
+    fun loadWikipediaUrl(webView: WebView, personName: String?) {
+        personName?.let { name ->
+            val nameAndSurname = name.split(" ").joinToString("_")
+            webView.apply {
+                webViewClient = WebViewClient()
+                loadUrl("https://en.wikipedia.org/wiki/$nameAndSurname")
+            }
+        }
+    }
+
     @BindingAdapter("runtime")
     @JvmStatic
     fun showRuntime(textView: TextView, runtime: Int?) {
-        textView.text = runtime?.toHoursAndMinutes() ?: "UNKNOWN RUNTIME"
+        textView.text =
+            if (runtime == null) "UNKNOWN RUNTIME" else convertToHoursAndMinutes(runtime)
     }
 
     @BindingAdapter("quoteVisibility")
@@ -80,7 +95,7 @@ object DataBindingAdapter {
     @JvmStatic
     fun showEpisodeRuntime(textView: TextView, episodeRuntime: List<Int>?) {
         textView.text = episodeRuntime?.joinToString(", ") {
-            it.toHoursAndMinutes()
+            convertToHoursAndMinutes(it)
         } ?: "UNKNOWN RUNTIME"
     }
 }

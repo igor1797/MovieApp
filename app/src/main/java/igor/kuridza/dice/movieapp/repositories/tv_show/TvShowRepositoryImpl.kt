@@ -1,6 +1,7 @@
 package igor.kuridza.dice.movieapp.repositories.tv_show
 
 import igor.kuridza.dice.movieapp.common.makeNetworkRequest
+import igor.kuridza.dice.movieapp.model.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.model.resource.Resource
@@ -12,20 +13,28 @@ class TvShowRepositoryImpl(
     private val tvShowApiService: TvShowApiService
 ): TvShowRepository {
 
-    override suspend fun getTvShowsByType(
+    override fun getTvShowsByType(
         tvShowType: String,
         language: String
     ): Flow<Resource<GetTvShowsResponse>> =
-        makeNetworkRequest(tvShowType, language) { _tvShowType, _language ->
-            tvShowApiService.getTvShowsByType(_tvShowType, _language)
+        makeNetworkRequest {
+            tvShowApiService.getTvShowsByType(tvShowType, language)
         }
 
-    override suspend fun getPrimaryTvShowDetailsById(
+    override fun getPrimaryTvShowDetailsById(
         tvShowId: Int,
         language: String
     ): Flow<Resource<TvShowDetails>> =
-        makeNetworkRequest(tvShowId, language) { _tvShowId, _language ->
-            tvShowApiService.getPrimaryTvShowDetailsById(_tvShowId, _language)
+        makeNetworkRequest {
+            tvShowApiService.getPrimaryTvShowDetailsById(tvShowId, language)
+        }
+
+    override fun getCastAndCrewForTvShow(
+        tvShowId: Int,
+        language: String
+    ): Flow<Resource<GetCreditsResponse>> =
+        makeNetworkRequest {
+            tvShowApiService.getCastAndCrewForTvShow(tvShowId, language)
         }
 
     override suspend fun removeRatingForTvShow(tvShowId: Int) =
@@ -34,9 +43,9 @@ class TvShowRepositoryImpl(
     override suspend fun rateTvShow(tvShowId: Int, ratingValue: Number) =
         tvShowApiService.rateTvShow(tvShowId, ratingValue)
 
-    override suspend fun getImagesThatBelongToTvShow(tvShowId: Int): Flow<Resource<GetImagesResponse>> =
-        makeNetworkRequest(tvShowId) { _tvShowId ->
-            tvShowApiService.getImagesThatBelongToTvShow(_tvShowId)
+    override fun getImagesThatBelongToTvShow(tvShowId: Int): Flow<Resource<GetImagesResponse>> =
+        makeNetworkRequest {
+            tvShowApiService.getImagesThatBelongToTvShow(tvShowId)
         }
 
     override suspend fun getTvShowListForTvShow(
@@ -48,4 +57,12 @@ class TvShowRepositoryImpl(
 
     override suspend fun getUserReviewsForTvShow(tvShowId: Int, language: String) =
         tvShowApiService.getUserReviewsForTvShow(tvShowId, language)
+
+    override fun searchTvShows(
+        searchQuery: String,
+        language: String
+    ): Flow<Resource<GetTvShowsResponse>> =
+        makeNetworkRequest {
+            tvShowApiService.searchTvShows(searchQuery, language)
+        }
 }
