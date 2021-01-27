@@ -5,7 +5,6 @@ import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsViewMod
 import igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.search.movies.SearchMoviesViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.search.tv_shows.SearchTvShowsViewModel
-import igor.kuridza.dice.movieapp.ui.fragments.settings.SettingsViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.tv_show_details.TvShowDetailsViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.tv_shows.TvShowsViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -13,7 +12,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel {
-        MoviesViewModel(get())
+        MoviesViewModel(get(), get(), get())
     }
 
     viewModel {
@@ -21,7 +20,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        TvShowsViewModel(get())
+        TvShowsViewModel(get(), get())
     }
 
     viewModel {
@@ -30,10 +29,6 @@ val viewModelModule = module {
 
     viewModel {
         ImageViewModel(get(), get())
-    }
-
-    viewModel {
-        SettingsViewModel()
     }
 
     viewModel {

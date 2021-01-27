@@ -14,4 +14,40 @@
     <string name="numberOfEpisodesText">Broj epizoda</string>
     <string name="numberOfSeasonsText">Broj sezona</string>
     <string name="createdByText">Napravili</string>
+
+    <string-array name="theme_entries">
+        <item>Svijetlo</item>
+        <item>Tamno</item>
+        <item>Zadana postavka sustava</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system_default</item>
+    </string-array>
+
+    <string name="actorsText">Glumci</string>
+    <string name="moviesText">Filmovi</string>
+    <string name="tvShowsText">Serije</string>
+    <string name="settingsText">Postavke</string>
+    <string name="themeText">Tema</string>
+    <string name="lightModeText">Svjetlo</string>
+    <string name="darkModeText">Tamno</string>
+    <string name="filterText">Filter</string>
+    <string name="chooseMovieCategoryText">Odaberite kategoriju filma</string>
+    <string name="topRated">Najbolje ocijenjeni</string>
+    <string name="popularText">Popularni</string>
+    <string name="upcomingText">Nadolazeći</string>
+    <string name="applyText">Primjeni</string>
+    <string name="chooseTvShowCategoryText">Odaberite kategoriju serije</string>
+    <string name="onTheAir">U emitovanju</string>
+    <string name="searchText">Traži</string>
+    <string name="searchQueryInfoMessageText">Upit mora sadržavati barem jedan znak!</string>
+    <string name="themeHeaderText">Tema</string>
+    <string name="languageHeaderText">Jezik</string>
+    <string name="selectedThemeTitleText">Odabrana tema</string>
+    <string name="languageTitleText">"Prevedi podatke "</string>
+    <string name="languageDescriptionText">Ovo će prevesti sve podatke na vaš jezik ako postoji prijevod</string>
+    <string name="searchHintText">Traži…</string>
 </resources>

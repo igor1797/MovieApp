@@ -10,18 +10,20 @@ import igor.kuridza.dice.movieapp.common.TOP_RATED
 import igor.kuridza.dice.movieapp.model.resource.Resource
 import igor.kuridza.dice.movieapp.model.tv_show.GetTvShowsResponse
 import igor.kuridza.dice.movieapp.repositories.tv_show.TvShowRepository
+import igor.kuridza.dice.movieapp.utils.ResourceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class TvShowsViewModel(
-    private val tvShowRepository: TvShowRepository
+    private val tvShowRepository: TvShowRepository,
+    private val resourceHelper: ResourceHelper
 ) : ViewModel() {
 
     private val categories = mapOf(
-        TOP_RATED to "Top rated",
-        POPULAR to "Popular",
-        ON_THE_AIR to "On the air"
+        TOP_RATED to resourceHelper.topRatedString(),
+        POPULAR to resourceHelper.popularString(),
+        ON_THE_AIR to resourceHelper.onTheAirString()
     )
 
     fun getCategoryNameByKey(category: String): String {

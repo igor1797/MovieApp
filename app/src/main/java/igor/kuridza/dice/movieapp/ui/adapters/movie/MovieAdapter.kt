@@ -59,10 +59,12 @@ class MovieAdapter(
     ) : BaseHolder<Movie, MovieItemWithTitlePosterAndVoteAverageBinding>(binding) {
 
         override fun bindItem(item: Movie) {
-            binding.movie = item
-            binding.moviePoster.transitionName = item.posterPath
-            binding.root.setOnClickListener {
-                movieClickListener.onMovieClickListener(item, binding.moviePoster)
+            binding.apply {
+                movie = item
+                moviePoster.transitionName = item.posterPath ?: "EmptyOrNullImagePath"
+                root.setOnClickListener {
+                    movieClickListener.onMovieClickListener(item, binding.moviePoster)
+                }
             }
         }
     }
@@ -73,15 +75,12 @@ class MovieAdapter(
     ) : BaseHolder<Movie, MovieItemWithPosterAndTitleBinding>(binding) {
 
         override fun bindItem(item: Movie) {
-            binding.movie = item
-            val posterPath: String? = item.posterPath
-            if (posterPath.isNullOrEmpty()) {
-                binding.movieImage.transitionName = "EmptyOrNullImagePath"
-            } else {
-                binding.movieImage.transitionName = item.posterPath
-            }
-            binding.root.setOnClickListener {
-                movieClickListener.onMovieClickListener(item, binding.movieImage)
+            binding.apply {
+                movie = item
+                movieImage.transitionName = item.posterPath ?: "EmptyOrNullImagePath"
+                root.setOnClickListener {
+                    movieClickListener.onMovieClickListener(item, binding.movieImage)
+                }
             }
         }
     }

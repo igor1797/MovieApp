@@ -44,6 +44,7 @@ dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.preference:preference:1.1.1'
     def koin_version = "2.2.0"
     def retrofit_version = "2.9.0"
     def logging_interceptor_version= "4.5.0"

@@ -31,5 +31,23 @@
     <string name="onTheAir">On the air</string>
     <string name="searchText">Search</string>
     <string name="searchQueryInfoMessageText">Search query must contain one character!</string>
-    <string name="imageNumberText">%d/%d</string>
+    <string name="imageNumberText" translatable="false">%d/%d</string>
+    <string name="themeHeaderText">Theme</string>
+    <string name="languageHeaderText">Language</string>
+    <string name="selectedThemeTitleText">Selected theme</string>
+    <string name="languageTitleText">Translate data in your language</string>
+    <string name="languageDescriptionText">This will display all data in your language when available</string>
+    <string name="searchHintText">Search…</string>
+
+    <string-array name="theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System Default</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system_default</item>
+    </string-array>
 </resources>

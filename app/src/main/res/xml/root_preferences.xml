@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/themeHeaderText"
+        app:icon="@drawable/ic_theme">
+
+        <ListPreference
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="theme"
+            app:title="@string/selectedThemeTitleText"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/languageHeaderText"
+        app:icon="@drawable/ic_language">
+
+        <SwitchPreferenceCompat
+            app:key="language"
+            app:defaultValue="false"
+            app:title="@string/languageTitleText"
+            app:summary="@string/languageDescriptionText" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

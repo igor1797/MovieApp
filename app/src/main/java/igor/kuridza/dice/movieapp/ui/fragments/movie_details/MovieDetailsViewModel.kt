@@ -8,12 +8,13 @@ import igor.kuridza.dice.movieapp.model.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.movie.MovieDetails
 import igor.kuridza.dice.movieapp.model.resource.Resource
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
+import igor.kuridza.dice.movieapp.prefs.SettingsPrefs
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
-    private val movieRepository: MovieRepository
+    private val movieRepository: MovieRepository,
 ) : ViewModel() {
 
     private val _movieDetails = MutableLiveData<Resource<MovieDetails>>()

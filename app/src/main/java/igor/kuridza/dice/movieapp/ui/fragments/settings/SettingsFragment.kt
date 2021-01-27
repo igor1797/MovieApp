@@ -1,37 +1,27 @@
 package igor.kuridza.dice.movieapp.ui.fragments.settings
 
-import androidx.appcompat.app.AppCompatDelegate
+import android.os.Bundle
+import androidx.preference.ListPreference
+import androidx.preference.PreferenceFragmentCompat
 import igor.kuridza.dice.movieapp.R
-import igor.kuridza.dice.movieapp.databinding.SettingsFragmentBinding
-import igor.kuridza.dice.movieapp.model.theme.Theme
-import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
-import org.koin.android.viewmodel.ext.android.viewModel
+import igor.kuridza.dice.movieapp.utils.SettingsManager
+import org.koin.android.ext.android.inject
 
-class SettingsFragment : BaseFragment<SettingsFragmentBinding>() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    private val viewModel: SettingsViewModel by viewModel()
+    private val settingsManager: SettingsManager by inject()
 
-    override fun getLayoutResourceId(): Int = R.layout.settings_fragment
-
-    override fun setUpUi() {
-        observeTheme()
-        binding.viewModel = viewModel
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+        setThemeSelectionOnChangeListener()
     }
 
-    private fun observeTheme() {
-        viewModel.theme.observe(viewLifecycleOwner) { theme ->
-            when (theme) {
-                Theme.DARK -> changeThemeToDarkMode()
-                Theme.LIGHT -> changeThemeToLightMode()
-            }
+    private fun setThemeSelectionOnChangeListener() {
+        findPreference<ListPreference>("theme")?.setOnPreferenceChangeListener { _, newValue ->
+            settingsManager.changeUiMode(newValue.toString())
+            //When the same theme is selected again, the activity is recreated again. That needs to be fixed
+            activity?.recreate()
+            false
         }
-    }
-
-    private fun changeThemeToDarkMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-    }
-
-    private fun changeThemeToLightMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 }

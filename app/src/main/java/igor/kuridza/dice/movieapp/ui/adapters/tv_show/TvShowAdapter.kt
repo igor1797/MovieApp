@@ -58,15 +58,12 @@ class TvShowAdapter(
         private val tvShowClickListener: TvShowClickListener
     ) : BaseHolder<TvShow, TvShowItemWithNamePosterAndVoteAverageBinding>(binding) {
         override fun bindItem(item: TvShow) {
-            binding.tvShow = item
-            val posterPath = item.posterPath
-            if (posterPath.isNullOrEmpty()) {
-                binding.tvShowPoster.transitionName = "EmptyOrNullImagePath"
-            } else {
-                binding.tvShowPoster.transitionName = item.posterPath
-            }
-            binding.root.setOnClickListener {
-                tvShowClickListener.onTvShowClickListener(item, binding.tvShowPoster)
+            binding.apply {
+                tvShow = item
+                tvShowPoster.transitionName = item.posterPath ?: "EmptyOrNullImagePath"
+                root.setOnClickListener {
+                    tvShowClickListener.onTvShowClickListener(item, binding.tvShowPoster)
+                }
             }
         }
     }
@@ -77,10 +74,12 @@ class TvShowAdapter(
     ) : BaseHolder<TvShow, TvShowItemWithPosterAndTitleBinding>(binding) {
 
         override fun bindItem(item: TvShow) {
-            binding.tvShow = item
-            binding.tvShowImage.transitionName = item.posterPath
-            binding.root.setOnClickListener {
-                tvShowClickListener.onTvShowClickListener(item, binding.tvShowImage)
+            binding.apply {
+                tvShow = item
+                tvShowImage.transitionName = item.posterPath ?: "EmptyOrNullImagePath"
+                root.setOnClickListener {
+                    tvShowClickListener.onTvShowClickListener(item, binding.tvShowImage)
+                }
             }
         }
     }

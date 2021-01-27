@@ -29,7 +29,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsFragmentBinding>(), Person
     override fun getLayoutResourceId(): Int = R.layout.movie_details_fragment
 
     override fun setUpUi() {
-        getPrimaryInformationAboutMovie(args.movieId, DEFAULT_LANGUAGE)
+        getPrimaryInformationAboutMovie(args.movieId)
         setUpRecycler()
         observeMovieDetails()
         setUpTransition()
@@ -97,8 +97,8 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsFragmentBinding>(), Person
         }
     }
 
-    private fun getPrimaryInformationAboutMovie(movieId: Int, language: String) {
-        viewModel.getPrimaryInformationAboutMovie(movieId, language)
+    private fun getPrimaryInformationAboutMovie(movieId: Int) {
+        viewModel.getPrimaryInformationAboutMovie(movieId, DEFAULT_LANGUAGE)
     }
 
     private fun observeMovieDetails() {

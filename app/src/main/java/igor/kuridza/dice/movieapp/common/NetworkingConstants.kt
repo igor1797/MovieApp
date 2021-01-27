@@ -25,6 +25,7 @@ const val AIRING_TODAY = "airing_today"
 //Language
 const val LANGUAGE = "language"
 const val DEFAULT_LANGUAGE = "en-US"
+const val CROATIAN_LANGUAGE = "hr"
 
 const val QUERY = "query"
 

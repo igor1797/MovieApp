@@ -60,7 +60,7 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
     }
 
     private fun getPrimaryInformationAboutTvShow(tvShowId: Int, language: String) {
-        viewModel.getPrimaryInformationAboutTvShow(args.tvShowId, DEFAULT_LANGUAGE)
+        viewModel.getPrimaryInformationAboutTvShow(tvShowId, language)
     }
 
     private fun initAppBarStateChangeListener() {

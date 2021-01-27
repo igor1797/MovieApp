@@ -14,6 +14,8 @@ import igor.kuridza.dice.movieapp.model.genre.Genre
 
 object DataBindingAdapter {
 
+    private const val UNDEFINED = "N/A"
+
     @BindingAdapter("imagePath")
     @JvmStatic
     fun loadImage(imageView: ImageView, imagePath: String?) {
@@ -25,7 +27,7 @@ object DataBindingAdapter {
     fun showGenres(textView: TextView, genres: List<Genre>?) {
         textView.text = genres?.joinToString(separator = ", ") { genre ->
             genre.name
-        } ?: "UNKNOWN GENRES"
+        } ?: UNDEFINED
     }
 
     @BindingAdapter("person_name")
@@ -44,7 +46,7 @@ object DataBindingAdapter {
     @JvmStatic
     fun showRuntime(textView: TextView, runtime: Int?) {
         textView.text =
-            if (runtime == null) "UNKNOWN RUNTIME" else convertToHoursAndMinutes(runtime)
+            if (runtime == null) UNDEFINED else convertToHoursAndMinutes(runtime)
     }
 
     @BindingAdapter("quoteVisibility")
@@ -70,13 +72,13 @@ object DataBindingAdapter {
     @BindingAdapter("budget")
     @JvmStatic
     fun showBudget(textView: TextView, budget: Int?) {
-        textView.text = if (budget != null && budget != 0) "$$budget" else "UNDEFINED"
+        textView.text = if (budget != null && budget != 0) "$$budget" else UNDEFINED
     }
 
     @BindingAdapter("adult")
     @JvmStatic
     fun showAdult(textView: TextView, adult: Boolean) {
-        textView.text = if (adult) "YES" else "NO"
+        textView.text = if (adult) "Yes" else "No"
     }
 
     @BindingAdapter("createdBy")
@@ -84,11 +86,11 @@ object DataBindingAdapter {
     fun showCreatedBy(textView: TextView, directors: List<CreatedBy>?) {
         textView.text =
             if (directors?.isEmpty() == true)
-                "UNDEFINED CREATORS"
+                UNDEFINED
             else
                 directors?.joinToString(separator = ", ") { director ->
                     director.name
-                } ?: "UNKNOWN CREATORS"
+                } ?: UNDEFINED
     }
 
     @BindingAdapter("episodeRuntime")
@@ -96,6 +98,6 @@ object DataBindingAdapter {
     fun showEpisodeRuntime(textView: TextView, episodeRuntime: List<Int>?) {
         textView.text = episodeRuntime?.joinToString(", ") {
             convertToHoursAndMinutes(it)
-        } ?: "UNKNOWN RUNTIME"
+        } ?: UNDEFINED
     }
 }

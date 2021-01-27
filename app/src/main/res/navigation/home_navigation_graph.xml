@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragment"
-        android:label="MovieDetailsFragment">
+        android:label="MovieDetailsFragment"
+        tools:layout="@layout/movie_details_fragment">
 
         <argument
             android:name="movieId"
@@ -49,7 +50,8 @@
     <fragment
         android:id="@+id/imageFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.images.ImageFragment"
-        android:label="ImageFragment">
+        android:label="ImageFragment"
+        tools:layout="@layout/image_fragment">
 
         <argument
             android:name="id"
@@ -99,9 +101,10 @@
     <fragment
         android:id="@+id/personWikipediaInfoFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.person.PersonWikipediaInfoFragment"
-        android:label="PersonWikipediaInfoFragment">
+        android:label="PersonWikipediaInfoFragment"
+        tools:layout="@layout/person_wikipedia_info_fragment">
         <argument
             android:name="person"
-            app:argType="igor.kuridza.dice.movieapp.model.Person"></argument>
+            app:argType="igor.kuridza.dice.movieapp.model.Person" />
     </fragment>
 </navigation>
