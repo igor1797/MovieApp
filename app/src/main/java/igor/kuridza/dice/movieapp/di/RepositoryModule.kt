@@ -1,5 +1,7 @@
 package igor.kuridza.dice.movieapp.di
 
+import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepository
+import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepositoryImpl
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepositoryImpl
 import igor.kuridza.dice.movieapp.repositories.tv_show.TvShowRepository
@@ -14,5 +16,9 @@ val repositoryModule = module {
 
     single<TvShowRepository> {
         TvShowRepositoryImpl(get())
+    }
+
+    single<AuthenticationRepository> {
+        AuthenticationRepositoryImpl(get())
     }
 }

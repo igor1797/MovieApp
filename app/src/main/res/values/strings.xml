@@ -32,12 +32,23 @@
     <string name="searchText">Search</string>
     <string name="searchQueryInfoMessageText">Search query must contain one character!</string>
     <string name="imageNumberText" translatable="false">%d/%d</string>
+    <string name="ratingText" translatable="false">%d/%d</string>
     <string name="themeHeaderText">Theme</string>
     <string name="languageHeaderText">Language</string>
     <string name="selectedThemeTitleText">Selected theme</string>
     <string name="languageTitleText">Translate data in your language</string>
     <string name="languageDescriptionText">This will display all data in your language when available</string>
     <string name="searchHintText">Search…</string>
+    <string name="invalidUsernameText">Username cannot be empty!</string>
+    <string name="invalidPasswordText">Password must contains >3 characters!</string>
+    <string name="tmdbRatingText">TMDB rating</string>
+    <string name="loginText">Login</string>
+    <string name="cancelText">Cancel</string>
+    <string name="rateText">Rate</string>
+    <string name="successMessageText">Success</string>
+    <string name="successfullyUpdatedRatingMessageText">Successfully updated rating</string>
+    <string name="errorOccurredMessageText">An error occurred!!!</string>
+    <string name="loginPopUpTitleMessageText">You need to be logged in to be able to rate!</string>
 
     <string-array name="theme_entries">
         <item>Light</item>

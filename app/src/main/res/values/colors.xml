@@ -12,6 +12,7 @@
     <color name="colorLightBlue">#01b4e4</color>
     <color name="colorBlack">#000000</color>
     <color name="lightGray">#D3D3D3</color>
+    <color name="darkGray">#A9A9A9</color>
     //Night
     <color name="blackNight">#151515</color>
     <color name="whiteSmoke">#f5f5f5</color>

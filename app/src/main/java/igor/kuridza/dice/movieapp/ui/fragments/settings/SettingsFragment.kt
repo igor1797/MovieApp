@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import igor.kuridza.dice.movieapp.R
-import igor.kuridza.dice.movieapp.utils.SettingsManager
+import igor.kuridza.dice.movieapp.utils.settings.SettingsManager
 import org.koin.android.ext.android.inject
 
 class SettingsFragment : PreferenceFragmentCompat() {

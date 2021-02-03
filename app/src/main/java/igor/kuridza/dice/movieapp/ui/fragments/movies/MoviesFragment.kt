@@ -34,15 +34,18 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
     override fun setUpUi() {
         setUpRecycler()
         observeMovies()
-        setToolbarIconsOnClickListener()
-
         initBehavior()
         initBottomSheetCallback()
-        setBackgroundBehindBottomSheetOnClickListener()
-        setBottomSheetItemsOnClickListener()
+        initListeners()
         addBottomSheetCallback()
-        setApplyButtonOnClickListener()
         observeSelectedCategory()
+    }
+
+    private fun initListeners() {
+        setApplyButtonOnClickListener()
+        setBottomSheetItemsOnClickListener()
+        setBackgroundBehindBottomSheetOnClickListener()
+        setToolbarIconsOnClickListener()
     }
 
     private fun observeSelectedCategory() {

@@ -5,7 +5,7 @@
     <string name="originalTitleText">Originalni naslov</string>
     <string name="originalLanguageText">Originalni jezik</string>
     <string name="budgetText">Budžet</string>
-    <string name="releaseDateText">Datum izlazka</string>
+    <string name="releaseDateText">Datum izlaska</string>
     <string name="statusText">Status</string>
     <string name="adultText">Za odrasle</string>
     <string name="firstAirDateText">Datum prvog emitiranja</string>
@@ -14,19 +14,15 @@
     <string name="numberOfEpisodesText">Broj epizoda</string>
     <string name="numberOfSeasonsText">Broj sezona</string>
     <string name="createdByText">Napravili</string>
-
-    <string-array name="theme_entries">
-        <item>Svijetlo</item>
-        <item>Tamno</item>
-        <item>Zadana postavka sustava</item>
-    </string-array>
-
-    <string-array name="theme_values">
-        <item>light</item>
-        <item>dark</item>
-        <item>system_default</item>
-    </string-array>
-
+    <string name="invalidUsernameText">Korisničko ime ne smije biti prazno!</string>
+    <string name="invalidPasswordText">Lozinka mora sadržavati >3 znaka!</string>
+    <string name="tmdbRatingText">TMDB ocjena</string>
+    <string name="loginText">Prijava</string>
+    <string name="cancelText">Odustani</string>
+    <string name="rateText">Ocjeni</string>
+    <string name="successMessageText">Uspješno</string>
+    <string name="successfullyUpdatedRatingMessageText">Uspješno ažurirana ocjena</string>
+    <string name="errorOccurredMessageText">Došlo je do pogreške!!!</string>
     <string name="actorsText">Glumci</string>
     <string name="moviesText">Filmovi</string>
     <string name="tvShowsText">Serije</string>
@@ -50,4 +46,18 @@
     <string name="languageTitleText">"Prevedi podatke "</string>
     <string name="languageDescriptionText">Ovo će prevesti sve podatke na vaš jezik ako postoji prijevod</string>
     <string name="searchHintText">Traži…</string>
+    <string name="loginPopUpTitleMessageText">Trebate biti prijavljeni kako bi mogli dati ocjenu!</string>
+
+    <string-array name="theme_entries">
+        <item>Svijetlo</item>
+        <item>Tamno</item>
+        <item>Zadana postavka sustava</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system_default</item>
+    </string-array>
+
 </resources>

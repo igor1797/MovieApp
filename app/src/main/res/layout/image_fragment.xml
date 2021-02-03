@@ -10,18 +10,11 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/imageViewPager"
+            android:background="@color/colorDarkBlue"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.fragments.images.ImageFragment" />
 
-        <ImageView
-            android:id="@+id/backgroundImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:src="@drawable/rounded_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/back"
@@ -39,10 +32,11 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/backgroundImage"
-            app:layout_constraintEnd_toEndOf="@id/backgroundImage"
-            app:layout_constraintStart_toStartOf="@id/backgroundImage"
-            app:layout_constraintTop_toTopOf="@id/backgroundImage" />
+            android:gravity="center"
+            android:background="@drawable/rounded_background"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

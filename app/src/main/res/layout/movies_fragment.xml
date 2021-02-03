@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/top_rounded_background"
+            style="@style/BottomSheetBackgroundStyle"
             app:behavior_hideable="true"
             app:behavior_peekHeight="0dp"
             app:layout_behavior="@string/bottom_sheet_behavior">
@@ -73,9 +74,9 @@
                 android:layout_height="wrap_content"
                 android:padding="24dp"
                 android:text="@string/chooseMovieCategoryText"
-                android:textColor="@color/colorDarkBlue"
                 android:textSize="22sp"
                 android:gravity="center"
+                style="@style/BottomSheetTextStyle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,7 +84,7 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/colorDarkBlue"
+                style="@style/DividerStyle"
                 app:layout_constraintTop_toBottomOf="@id/bottomSheetHeader" />
 
             <RadioGroup
@@ -99,8 +100,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/topRated"
-                    android:textColor="@color/colorDarkBlue"
                     android:textSize="18sp"
+                    style="@style/BottomSheetTextStyle"
                     android:checked="true"
                     android:layout_marginTop="8dp" />
 
@@ -109,8 +110,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/popularText"
-                    android:textColor="@color/colorDarkBlue"
                     android:textSize="18sp"
+                    style="@style/BottomSheetTextStyle"
                     android:layout_marginTop="8dp" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -118,8 +119,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/upcomingText"
-                    android:textColor="@color/colorDarkBlue"
                     android:textSize="18sp"
+                    style="@style/BottomSheetTextStyle"
                     android:layout_marginTop="8dp" />
 
             </RadioGroup>
@@ -138,8 +139,7 @@
                 android:textSize="18sp"
                 android:layout_marginTop="16dp"
                 app:cornerRadius="8dp"
-                android:backgroundTint="@color/colorDarkBlue"
-                android:textColor="@color/white" />
+                style="@style/BottomSheetButtonStyle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

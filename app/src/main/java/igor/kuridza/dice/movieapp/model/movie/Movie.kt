@@ -22,10 +22,6 @@ data class Movie(
     val title: String,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    val popularity: Number,
-    @SerializedName("vote_count")
-    val voteCount: Int,
-    val video: Boolean,
     @SerializedName("vote_average")
     val voteAverage: Number
 ): Parcelable

@@ -7,8 +7,8 @@ import igor.kuridza.dice.movieapp.common.UPCOMING
 import igor.kuridza.dice.movieapp.model.movie.GetMoviesResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
-import igor.kuridza.dice.movieapp.prefs.SettingsPrefs
-import igor.kuridza.dice.movieapp.utils.ResourceHelper
+import igor.kuridza.dice.movieapp.prefs.settings.SettingsPrefs
+import igor.kuridza.dice.movieapp.utils.resource.ResourceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,14 +51,5 @@ class MoviesViewModel(
 
     fun getLanguage(): String {
         return settingsPrefs.getLanguage()
-    }
-
-    fun getListOfMoviesForMovie(movieId: Number, movieListType: String, language: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            movieRepository.getListOfMoviesForMovie(movieId, movieListType, language)
-                .collect { data ->
-                    mMovies.postValue(data)
-                }
-        }
     }
 }

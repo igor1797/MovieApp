@@ -1,8 +1,11 @@
 package igor.kuridza.dice.movieapp.di
 
+import igor.kuridza.dice.movieapp.ui.fragments.authentication.AuthenticationViewModel
+import igor.kuridza.dice.movieapp.ui.fragments.home.HomeViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.images.ImageViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesViewModel
+import igor.kuridza.dice.movieapp.ui.fragments.rating.RateViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.search.movies.SearchMoviesViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.search.tv_shows.SearchTvShowsViewModel
 import igor.kuridza.dice.movieapp.ui.fragments.tv_show_details.TvShowDetailsViewModel
@@ -16,7 +19,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        MovieDetailsViewModel(get())
+        MovieDetailsViewModel(get(), get())
     }
 
     viewModel {
@@ -24,7 +27,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        TvShowDetailsViewModel(get())
+        TvShowDetailsViewModel(get(), get())
     }
 
     viewModel {
@@ -37,5 +40,17 @@ val viewModelModule = module {
 
     viewModel {
         SearchTvShowsViewModel(get())
+    }
+
+    viewModel {
+        AuthenticationViewModel(get(), get(), get())
+    }
+
+    viewModel {
+        HomeViewModel(get())
+    }
+
+    viewModel {
+        RateViewModel(get(), get(), get())
     }
 }

@@ -23,6 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
+            app:itemIconTint="@color/btn_tab_item_color"
+            app:itemTextColor="@color/btn_tab_item_color"
             android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

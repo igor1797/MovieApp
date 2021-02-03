@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.databinding.PersonItemBinding
-import igor.kuridza.dice.movieapp.model.Person
+import igor.kuridza.dice.movieapp.model.person.Person
 
 class PersonAdapter(
     private val personClickListener: PersonClickListener

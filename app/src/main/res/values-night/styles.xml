@@ -5,7 +5,7 @@
         <item name="tint">@color/colorLightBlue</item>
     </style>
 
-    <style name="RatingStyle" parent="Theme.MovieApp">
+    <style name="TextStyle" parent="Theme.MovieApp">
         <item name="android:textColor">@color/colorDarkBlue</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
@@ -18,4 +18,20 @@
     <style name="DividerStyle" parent="Theme.MovieApp">
         <item name="android:background">@color/colorLightBlue</item>
     </style>
+
+    <style name="BottomSheetBackgroundStyle" parent="Theme.MovieApp">
+        <item name="android:backgroundTint">@color/blackNight</item>
+    </style>
+
+    <style name="BottomSheetTextStyle" parent="Theme.MovieApp">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorLightBlue</item>
+    </style>
+
+    <style name="BottomSheetButtonStyle" parent="Theme.MovieApp">
+        <item name="android:backgroundTint">@color/colorLightBlue</item>
+        <item name="android:textColor">@color/colorDarkBlue</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

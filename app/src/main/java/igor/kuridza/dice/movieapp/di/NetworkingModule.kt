@@ -1,5 +1,6 @@
 package igor.kuridza.dice.movieapp.di
 
+import igor.kuridza.dice.movieapp.networking.AuthenticationService
 import igor.kuridza.dice.movieapp.networking.MovieApiService
 import igor.kuridza.dice.movieapp.networking.TvShowApiService
 import okhttp3.Interceptor
@@ -52,5 +53,9 @@ val networkingModule = module {
 
     single {
         get<Retrofit>().create(TvShowApiService::class.java)
+    }
+
+    single {
+        get<Retrofit>().create(AuthenticationService::class.java)
     }
 }

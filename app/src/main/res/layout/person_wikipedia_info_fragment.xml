@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="igor.kuridza.dice.movieapp.model.Person" />
+            type="igor.kuridza.dice.movieapp.model.person.Person" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

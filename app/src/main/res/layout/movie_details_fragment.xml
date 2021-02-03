@@ -64,20 +64,42 @@
                         android:layout_height="70dp"
                         android:src="@drawable/ic_star"
                         style="@style/StarStyle"
-                        app:layout_constraintBottom_toBottomOf="@id/movieImage"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintBottom_toTopOf="@id/rateText"
                         app:layout_constraintStart_toEndOf="@id/movieImage"
                         app:layout_constraintTop_toBottomOf="@id/movieImageHeader" />
 
                     <TextView
-                        android:id="@+id/movieRating"
+                        android:id="@+id/rateText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{movieDetails.vote_average.toString()}"
-                        style="@style/RatingStyle"
+                        android:text="@string/rateText"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/movieImage"
+                        app:layout_constraintStart_toStartOf="@id/star"
+                        app:layout_constraintEnd_toEndOf="@id/star" />
+
+                    <TextView
+                        android:id="@+id/userMovieRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/TextStyle"
                         app:layout_constraintBottom_toBottomOf="@id/star"
                         app:layout_constraintEnd_toEndOf="@id/star"
                         app:layout_constraintStart_toStartOf="@id/star"
                         app:layout_constraintTop_toTopOf="@id/star" />
+
+                    <ProgressBar
+                        android:id="@+id/userScoreLoading"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:layout_constraintTop_toTopOf="@id/star"
+                        app:layout_constraintEnd_toEndOf="@id/star"
+                        app:layout_constraintBottom_toBottomOf="@id/star"
+                        app:layout_constraintStart_toStartOf="@id/star"
+                        android:visibility="gone" />
+
 
                     <TextView
                         android:id="@+id/movieTitle"
@@ -196,6 +218,29 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tmdbRatingText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tmdbRatingText"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tmdbRating"
+                    android:text="@{movieDetails.voteAverage.toString()}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tmdbRatingText"
+                    app:layout_constraintTop_toBottomOf="@id/tmdbRatingText" />
 
                 <TextView
                     android:id="@+id/quoteText"
@@ -208,7 +253,7 @@
                     android:textStyle="bold"
                     android:layout_marginStart="24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tmdbRating" />
 
                 <TextView
                     android:id="@+id/movieQuote"
@@ -273,7 +318,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@{movieDetails.original_title}"
+                    android:text="@{movieDetails.originalTitle}"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/originalLanguage"
                     app:layout_constraintStart_toStartOf="@id/originalTitleText"
@@ -297,7 +342,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@{movieDetails.original_language}"
+                    android:text="@{movieDetails.originalLanguage}"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/originalLanguageText"
@@ -345,7 +390,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@{movieDetails.release_date}"
+                    android:text="@{movieDetails.releaseDate}"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"

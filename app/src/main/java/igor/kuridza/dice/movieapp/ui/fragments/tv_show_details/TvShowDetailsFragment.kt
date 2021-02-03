@@ -1,6 +1,8 @@
 package igor.kuridza.dice.movieapp.ui.fragments.tv_show_details
 
 import android.os.Bundle
+import android.util.Log
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,15 +10,19 @@ import androidx.transition.TransitionInflater
 import igor.kuridza.dice.movieapp.R
 import igor.kuridza.dice.movieapp.common.*
 import igor.kuridza.dice.movieapp.databinding.TvShowDetailsFragmentBinding
-import igor.kuridza.dice.movieapp.model.Person
+import igor.kuridza.dice.movieapp.model.person.Person
+import igor.kuridza.dice.movieapp.model.rating.AccountStatesResponse
 import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.model.resource.Error
 import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
+import igor.kuridza.dice.movieapp.ui.activities.MainActivity
 import igor.kuridza.dice.movieapp.ui.adapters.person.PersonAdapter
 import igor.kuridza.dice.movieapp.ui.adapters.person.PersonClickListener
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import igor.kuridza.dice.movieapp.ui.fragments.movie_details.AppBarStateChangeListener
+import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragmentDirections
+import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragmentDirections.goToRateDialogFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), PersonClickListener {
@@ -36,6 +42,8 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
         setAppBarLayoutOnStateChangedListener()
         setBackNavigationIconOnClickListener()
         setTvShowPosterOnClickListener()
+        observeAccountState()
+        setStartOnClickListener()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +65,65 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
             transitionName = posterPath
             loadImage(posterPath)
         }
+    }
+
+    private fun observeAccountState() {
+        viewModel.accountState.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Success<AccountStatesResponse> -> handleUserScoreResponseSuccess(response.data.rated.value)
+                is Error -> handleUserScoreResponseError(response.message)
+                Loading -> handleUserScoreLoading()
+            }
+        }
+    }
+
+    private fun handleUserScoreResponseError(message: String?) {
+        binding.userScoreLoading.gone()
+    }
+
+    private fun handleUserScoreResponseSuccess(ratedValue: Number) {
+        Log.d("TAGER", "handleUserScoreResponseSuccess: $ratedValue")
+        binding.apply {
+            userScoreLoading.gone()
+            userTvShowRating.text = ratedValue.toString()
+        }
+    }
+
+    private fun handleUserScoreLoading() {
+        binding.userScoreLoading.visible()
+    }
+
+    private fun setStartOnClickListener() {
+        binding.star.setOnClickListener {
+            if (!viewModel.isUserLoggedIn()) {
+                showPopUpDialog()
+            } else {
+                findNavController().navigate(
+                    TvShowDetailsFragmentDirections.goToRateDialogFragment(
+                        args.tvShowId,
+                        TV_SHOW_TYPE
+                    )
+                )
+            }
+        }
+    }
+
+    private fun showPopUpDialog() {
+        showDialog(
+            activity,
+            getString(R.string.loginPopUpTitleMessageText),
+            R.string.loginText,
+            { onLoginClicked() },
+            R.string.cancelText,
+        )
+    }
+
+
+    private fun onLoginClicked() {
+        viewModel.onLoginClicked()
+        val controller =
+            Navigation.findNavController(activity as MainActivity, R.id.mainNavHostFragment)
+        controller.navigate(R.id.authentication_navigation)
     }
 
     private fun getPrimaryInformationAboutTvShow(tvShowId: Int, language: String) {

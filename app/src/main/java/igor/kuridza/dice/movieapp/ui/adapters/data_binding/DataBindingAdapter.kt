@@ -9,7 +9,7 @@ import igor.kuridza.dice.movieapp.common.convertToHoursAndMinutes
 import igor.kuridza.dice.movieapp.common.gone
 import igor.kuridza.dice.movieapp.common.loadImage
 import igor.kuridza.dice.movieapp.common.visible
-import igor.kuridza.dice.movieapp.model.CreatedBy
+import igor.kuridza.dice.movieapp.model.person.CreatedBy
 import igor.kuridza.dice.movieapp.model.genre.Genre
 
 object DataBindingAdapter {

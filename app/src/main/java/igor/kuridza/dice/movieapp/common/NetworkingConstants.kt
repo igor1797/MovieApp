@@ -30,3 +30,5 @@ const val CROATIAN_LANGUAGE = "hr"
 const val QUERY = "query"
 
 const val IMAGE_URL = "https://image.tmdb.org/t/p/w185"
+const val IMAGE_BASE_URL_ORIGINAL = "https://image.tmdb.org/t/p/original"
+

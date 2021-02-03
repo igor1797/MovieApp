@@ -1,12 +1,12 @@
 package igor.kuridza.dice.movieapp.repositories.movie
 
 import igor.kuridza.dice.movieapp.common.makeNetworkRequest
-import igor.kuridza.dice.movieapp.model.GetCreditsResponse
+import igor.kuridza.dice.movieapp.model.person.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.movie.MovieDetails
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.movie.GetMoviesResponse
+import igor.kuridza.dice.movieapp.model.rating.RatingValue
 import igor.kuridza.dice.movieapp.model.resource.Resource
-import igor.kuridza.dice.movieapp.model.review.GetReviewsResponse
 import igor.kuridza.dice.movieapp.networking.MovieApiService
 import kotlinx.coroutines.flow.Flow
 
@@ -26,7 +26,7 @@ class MovieRepositoryImpl(
         searchQuery: String,
         language: String
     ): Flow<Resource<GetMoviesResponse>> =
-        makeNetworkRequest { ->
+        makeNetworkRequest {
             movieApiService.searchMovies(searchQuery, language)
         }
 
@@ -46,27 +46,14 @@ class MovieRepositoryImpl(
             movieApiService.getCastAndCrewForAMovie(movieId, language)
         }
 
-    override suspend fun rateMovie(movieId: Int, ratingValue: Number) =
-        movieApiService.rateMovie(movieId, ratingValue)
-
-    override suspend fun removeRatingForMovie(movieId: Int) =
-        movieApiService.removeRatingForMovie(movieId)
-
-    override fun getListOfMoviesForMovie(
-        movieId: Number,
-        movieListType: String,
-        language: String
-    ): Flow<Resource<GetMoviesResponse>> =
+    override fun rateMovie(movieId: Int, sessionId: String, ratingValue: Number) =
         makeNetworkRequest {
-            movieApiService.getListOfMoviesForMovie(movieId.toInt(), movieListType, language)
+            movieApiService.rateMovie(movieId, sessionId, RatingValue(ratingValue))
         }
 
-    override fun getUserReviewsForMovie(
-        movieId: Int,
-        language: String
-    ): Flow<Resource<GetReviewsResponse>> =
+    override fun getAccountStatesForMovie(movieId: Int, sessionId: String) =
         makeNetworkRequest {
-            movieApiService.getUserReviewsForMovie(movieId, language)
+            movieApiService.getAccountStatesForMovie(movieId, sessionId)
         }
 
     override fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>> =

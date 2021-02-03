@@ -1,47 +1,34 @@
 package igor.kuridza.dice.movieapp.repositories.tv_show
 
-import igor.kuridza.dice.movieapp.model.GetCreditsResponse
+import igor.kuridza.dice.movieapp.model.person.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.image.GetImagesResponse
 import igor.kuridza.dice.movieapp.model.message.MessageResponse
+import igor.kuridza.dice.movieapp.model.rating.AccountStatesResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
-import igor.kuridza.dice.movieapp.model.review.GetReviewsResponse
 import igor.kuridza.dice.movieapp.model.tv_show.GetTvShowsResponse
 import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 
 interface TvShowRepository {
-    fun getTvShowsByType(
-        tvShowType: String,
-        language: String
-    ): Flow<Resource<GetTvShowsResponse>>
 
-    fun getPrimaryTvShowDetailsById(
-        tvShowId: Int,
-        language: String
-    ): Flow<Resource<TvShowDetails>>
+    fun getTvShowsByType(tvShowType: String, language: String): Flow<Resource<GetTvShowsResponse>>
 
-    fun getCastAndCrewForTvShow(
-        tvShowId: Int,
-        language: String
-    ): Flow<Resource<GetCreditsResponse>>
+    fun getPrimaryTvShowDetailsById(tvShowId: Int, language: String): Flow<Resource<TvShowDetails>>
 
-    suspend fun removeRatingForTvShow(tvShowId: Int): Response<MessageResponse>
-
-    suspend fun rateTvShow(tvShowId: Int, ratingValue: Number): Response<MessageResponse>
-
-    suspend fun getTvShowListForTvShow(
-        tvShowId: Int,
-        tvShowListType: String,
-        language: String
-    ): Response<GetTvShowsResponse>
-
-    suspend fun getUserReviewsForTvShow(
-        tvShowId: Int,
-        language: String
-    ): Response<GetReviewsResponse>
+    fun getCastAndCrewForTvShow(tvShowId: Int, language: String): Flow<Resource<GetCreditsResponse>>
 
     fun searchTvShows(searchQuery: String, language: String): Flow<Resource<GetTvShowsResponse>>
 
     fun getImagesThatBelongToTvShow(tvShowId: Int): Flow<Resource<GetImagesResponse>>
+
+    fun rateTvShow(
+        tvShowId: Int,
+        sessionId: String,
+        ratingValue: Number
+    ): Flow<Resource<MessageResponse>>
+
+    fun getAccountStatesForTvShow(
+        tvShowId: Int,
+        sessionId: String
+    ): Flow<Resource<AccountStatesResponse>>
 }

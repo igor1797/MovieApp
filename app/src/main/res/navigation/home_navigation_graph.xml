@@ -24,6 +24,9 @@
         <action
             android:id="@+id/goToPersonWikipediaInfoFragment"
             app:destination="@id/personWikipediaInfoFragment" />
+        <action
+            android:id="@+id/goToRateDialogFragment"
+            app:destination="@id/rateDialogFragment" />
     </fragment>
 
     <fragment
@@ -45,6 +48,9 @@
         <action
             android:id="@+id/goToPersonWikipediaInfoFragment"
             app:destination="@id/personWikipediaInfoFragment" />
+        <action
+            android:id="@+id/goToRateDialogFragment"
+            app:destination="@id/rateDialogFragment" />
     </fragment>
 
     <fragment
@@ -79,7 +85,11 @@
         <action
             android:id="@+id/goToSearchTvShowsFragment"
             app:destination="@id/searchTvShowsFragment" />
+        <action
+            android:id="@+id/goToAuthentication"
+            app:destination="@id/authentication_navigation" />
     </fragment>
+
     <fragment
         android:id="@+id/searchMoviesFragment"
         android:name="igor.kuridza.dice.movieapp.ui.fragments.search.movies.SearchMoviesFragment"
@@ -105,6 +115,34 @@
         tools:layout="@layout/person_wikipedia_info_fragment">
         <argument
             android:name="person"
-            app:argType="igor.kuridza.dice.movieapp.model.Person" />
+            app:argType="igor.kuridza.dice.movieapp.model.person.Person" />
     </fragment>
+
+    <navigation
+        android:id="@+id/authentication_navigation"
+        app:startDestination="@id/authenticationFragment">
+        <fragment
+            android:id="@+id/authenticationFragment"
+            android:name="igor.kuridza.dice.movieapp.ui.fragments.authentication.AuthenticationFragment"
+            android:label="authentication_fragment"
+            tools:layout="@layout/authentication_fragment" />
+        <action
+            android:id="@+id/goTHomeFragment"
+            app:destination="@id/homeFragment" />
+    </navigation>
+    <dialog
+        android:id="@+id/rateDialogFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.fragments.rating.RateDialogFragment"
+        android:label="rate_dialog_fragment"
+        tools:layout="@layout/rate_dialog_fragment">
+
+        <argument
+            android:name="id"
+            app:argType="integer"></argument>
+
+        <argument
+            android:name="type"
+            app:argType="string"></argument>
+
+    </dialog>
 </navigation>

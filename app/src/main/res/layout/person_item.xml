@@ -7,7 +7,7 @@
 
         <variable
             name="person"
-            type="igor.kuridza.dice.movieapp.model.Person" />
+            type="igor.kuridza.dice.movieapp.model.person.Person" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/tvShowImage"
-                imagePath="@{person.profile_path}"
+                imagePath="@{person.profilePath}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
