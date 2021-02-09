@@ -107,6 +107,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="center|start"
+                        android:textAlignment="viewStart"
                         android:text="@{tvShowDetails.name}"
                         android:textSize="20sp"
                         android:textStyle="bold|italic"
@@ -158,11 +159,11 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:ellipsize="end"
-                        android:gravity="center|start"
                         android:maxLines="2"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
+                        android:textAlignment="viewStart"
                         app:layout_constraintBottom_toBottomOf="@id/tvShowImageHeader"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/dot" />
@@ -264,6 +265,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/quoteText"
                     app:layout_constraintTop_toBottomOf="@id/quoteText" />
@@ -281,13 +283,14 @@
                     app:layout_constraintTop_toBottomOf="@id/tvShowQuote" />
 
                 <TextView
-                    android:id="@+id/movieDescription"
+                    android:id="@+id/tvShowDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:text="@{tvShowDetails.overview}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/descriptionText"
                     app:layout_constraintTop_toBottomOf="@id/descriptionText" />
@@ -298,7 +301,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="16dp"
                     style="@style/DividerStyle"
-                    app:layout_constraintTop_toBottomOf="@id/movieDescription" />
+                    app:layout_constraintTop_toBottomOf="@id/tvShowDescription" />
 
                 <TextView
                     android:id="@+id/originalTitleText"
@@ -308,6 +311,7 @@
                     android:text="@string/originalTitleText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/originalLanguageText"
                     app:layout_constraintStart_toStartOf="@id/descriptionText"
                     app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
@@ -320,6 +324,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="@{tvShowDetails.originalName}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/originalLanguage"
                     app:layout_constraintStart_toStartOf="@id/originalTitleText"
                     app:layout_constraintTop_toBottomOf="@id/originalTitleText" />
@@ -332,6 +337,7 @@
                     android:text="@string/originalLanguageText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/originalTitleText"
                     app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
@@ -344,6 +350,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{tvShowDetails.originalLanguage}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/originalLanguageText"
                     app:layout_constraintTop_toBottomOf="@id/originalLanguageText" />
@@ -357,6 +364,7 @@
                     android:text="@string/firstAirDateText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
                     app:layout_constraintStart_toStartOf="@id/originalTitle"
                     app:layout_constraintTop_toBottomOf="@id/originalTitle" />
@@ -368,6 +376,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     android:text="@{tvShowDetails.firstAirDate}"
                     app:layout_constraintEnd_toStartOf="@id/lastAirDate"
                     app:layout_constraintStart_toStartOf="@id/firstAirDateText"
@@ -380,6 +389,7 @@
                     android:text="@string/lastAirDateText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintBaseline_toBaselineOf="@+id/firstAirDateText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/originalLanguage" />
@@ -392,6 +402,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{tvShowDetails.lastAirDate}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/lastAirDateText"
                     app:layout_constraintTop_toBottomOf="@id/lastAirDateText" />
@@ -405,6 +416,7 @@
                     android:text="@string/statusText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
                     app:layout_constraintStart_toStartOf="@id/firstAirDateText"
                     app:layout_constraintTop_toBottomOf="@id/firstAirDate" />
@@ -417,6 +429,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{tvShowDetails.status}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/type"
                     app:layout_constraintStart_toStartOf="@id/statusText"
                     app:layout_constraintTop_toBottomOf="@id/statusText" />
@@ -428,6 +441,7 @@
                     android:text="@string/typeText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/lastAirDateText" />
@@ -439,6 +453,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     android:text="@{tvShowDetails.type}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/typeText"
@@ -453,6 +468,7 @@
                     android:text="@string/numberOfEpisodesText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/lastAirDateText"
                     app:layout_constraintStart_toStartOf="@id/firstAirDateText"
                     app:layout_constraintTop_toBottomOf="@id/status" />
@@ -465,6 +481,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{String.valueOf(tvShowDetails.numberOfEpisodes)}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/numberOfSeasons"
                     app:layout_constraintStart_toStartOf="@id/numberOfEpisodesText"
                     app:layout_constraintTop_toBottomOf="@id/numberOfEpisodesText" />
@@ -476,6 +493,7 @@
                     android:text="@string/numberOfSeasonsText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintBaseline_toBaselineOf="@+id/numberOfEpisodesText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/lastAirDateText" />
@@ -487,6 +505,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     android:text="@{String.valueOf(tvShowDetails.numberOfSeasons)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/numberOfSeasonsText"
@@ -501,6 +520,7 @@
                     android:textStyle="bold"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintTop_toBottomOf="@id/numberOfEpisodes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/numberOfEpisodesText" />
@@ -512,6 +532,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     createdBy="@{tvShowDetails.createdBy}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/createdByText"

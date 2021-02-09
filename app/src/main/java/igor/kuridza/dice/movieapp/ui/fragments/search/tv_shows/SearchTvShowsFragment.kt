@@ -79,7 +79,7 @@ class SearchTvShowsFragment : BaseFragment<SearchTvShowsFragmentBinding>(), TvSh
     private fun searchMoviesByQuery(query: String) {
         hideErrorMessage()
         hideNoDataMessage()
-        viewModel.searchTvShowsByQuery(query, DEFAULT_LANGUAGE)
+        viewModel.searchTvShowsByQuery(query)
         viewModel.tvShows.observe(this) {
             when (it) {
                 is Success<GetTvShowsResponse> -> handleSuccess(it.data.tvShowList)

@@ -50,8 +50,7 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
 
     private fun observeSelectedCategory() {
         viewModel.category.observe(viewLifecycleOwner) { category ->
-            val language = viewModel.getLanguage()
-            getMoviesByType(category, language)
+            getMoviesByType(category)
             binding.toolbar.title = viewModel.getCategoryNameByKey(category)
             setCategoryChecked(category)
         }
@@ -94,8 +93,8 @@ class MoviesFragment : BaseFragment<MoviesFragmentBinding>(), MovieClickListener
         return true
     }
 
-    private fun getMoviesByType(movieType: String, language: String) {
-        viewModel.getMoviesByType(movieType, language)
+    private fun getMoviesByType(movieType: String) {
+        viewModel.getMoviesByType(movieType)
     }
 
     private fun observeMovies() {

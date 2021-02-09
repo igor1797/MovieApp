@@ -38,9 +38,9 @@ class TvShowsViewModel(
     val tvShows: LiveData<Resource<GetTvShowsResponse>>
         get() = _tvShows
 
-    fun getTvShowsByType(type: String, language: String) {
+    fun getTvShowsByType(type: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            tvShowRepository.getTvShowsByType(type, language).collect { data ->
+            tvShowRepository.getTvShowsByType(type).collect { data ->
                 _tvShows.postValue(data)
             }
         }

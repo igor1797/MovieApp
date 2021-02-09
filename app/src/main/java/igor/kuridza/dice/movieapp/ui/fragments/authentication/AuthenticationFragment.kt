@@ -1,5 +1,6 @@
 package igor.kuridza.dice.movieapp.ui.fragments.authentication
 
+import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import igor.kuridza.dice.movieapp.R

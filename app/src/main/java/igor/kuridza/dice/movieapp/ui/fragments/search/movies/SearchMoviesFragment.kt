@@ -78,7 +78,7 @@ class SearchMoviesFragment : BaseFragment<SearchMoviesFragmentBinding>(), MovieC
     private fun searchMoviesByQuery(query: String) {
         hideErrorMessage()
         hideNoDataMessage()
-        viewModel.searchMoviesByQuery(query, DEFAULT_LANGUAGE)
+        viewModel.searchMoviesByQuery(query)
         viewModel.movies.observe(this) {
             when (it) {
                 is Success<GetMoviesResponse> -> handleSuccess(it.data.movies)

@@ -19,41 +19,43 @@ class MovieRepositoryImpl(
     private val resourceHelper: ResourceHelper
 ): MovieRepository {
 
-    override fun getMoviesByType(
-        movieType: String,
-        language: String
-    ): Flow<Resource<GetMoviesResponse>> =
-        makeNetworkRequest { movieApiService.getMoviesByType(movieType, language) }
+    override fun getMoviesByType(movieType: String): Flow<Resource<GetMoviesResponse>> {
+        val language = settingsPrefs.getLanguage()
+        return makeNetworkRequest { movieApiService.getMoviesByType(movieType, language) }
+    }
 
-    override fun searchMovies(
-        searchQuery: String,
-        language: String
-    ): Flow<Resource<GetMoviesResponse>> =
-        makeNetworkRequest { movieApiService.searchMovies(searchQuery, language) }
+    override fun searchMovies(searchQuery: String): Flow<Resource<GetMoviesResponse>> {
+        val language = settingsPrefs.getLanguage()
+        return makeNetworkRequest { movieApiService.searchMovies(searchQuery, language) }
+    }
 
-    override fun getPrimaryInformationAboutMovie(
-        movieId: Int,
-        language: String
-    ): Flow<Resource<MovieDetails>> =
-        makeNetworkRequest { movieApiService.getPrimaryInformationAboutMovie(movieId, language) }
+    override fun getPrimaryInformationAboutMovie(movieId: Int): Flow<Resource<MovieDetails>> {
+        val language = settingsPrefs.getLanguage()
+        return makeNetworkRequest {
+            movieApiService.getPrimaryInformationAboutMovie(
+                movieId,
+                language
+            )
+        }
+    }
 
-    override fun getCastAndCrewForAMovie(
-        movieId: Int,
-        language: String
-    ): Flow<Resource<GetCreditsResponse>> =
-        makeNetworkRequest { movieApiService.getCastAndCrewForAMovie(movieId, language) }
+    override fun getCastAndCrewForAMovie(movieId: Int): Flow<Resource<GetCreditsResponse>> {
+        val language = settingsPrefs.getLanguage()
+        return makeNetworkRequest { movieApiService.getCastAndCrewForAMovie(movieId, language) }
+    }
 
     override fun rateMovie(
         movieId: Int,
         sessionId: String,
         ratingValue: Number
-    ): Flow<Resource<MessageResponse>> = makeNetworkRequest {
-        movieApiService.rateMovie(
-            movieId,
-            sessionId,
-            RatingValue(ratingValue)
-        )
-    }
+    ): Flow<Resource<MessageResponse>> =
+        makeNetworkRequest {
+            movieApiService.rateMovie(
+                movieId,
+                sessionId,
+                RatingValue(ratingValue)
+            )
+        }
 
     override fun getAccountStatesForMovie(movieId: Int, sessionId: String) =
         makeNetworkRequest { movieApiService.getAccountStatesForMovie(movieId, sessionId) }
@@ -64,8 +66,6 @@ class MovieRepositoryImpl(
     override fun getPopularString(): String = resourceHelper.popularString()
 
     override fun getTopRatedString(): String = resourceHelper.topRatedString()
-
-    override fun getLanguage(): String = settingsPrefs.getLanguage()
 
     override fun getUpcomingString(): String = resourceHelper.upcomingString()
 }

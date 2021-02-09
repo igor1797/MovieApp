@@ -11,18 +11,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    fun getMoviesByType(movieType: String, language: String): Flow<Resource<GetMoviesResponse>>
+    fun getMoviesByType(movieType: String): Flow<Resource<GetMoviesResponse>>
 
-    fun getPrimaryInformationAboutMovie(
-        movieId: Int,
-        language: String
-    ): Flow<Resource<MovieDetails>>
+    fun getPrimaryInformationAboutMovie(movieId: Int): Flow<Resource<MovieDetails>>
 
-    fun getCastAndCrewForAMovie(movieId: Int, language: String): Flow<Resource<GetCreditsResponse>>
+    fun getCastAndCrewForAMovie(movieId: Int): Flow<Resource<GetCreditsResponse>>
 
     fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>>
 
-    fun searchMovies(searchQuery: String, language: String): Flow<Resource<GetMoviesResponse>>
+    fun searchMovies(searchQuery: String): Flow<Resource<GetMoviesResponse>>
 
     fun rateMovie(
         movieId: Int,
@@ -40,6 +37,4 @@ interface MovieRepository {
     fun getPopularString(): String
 
     fun getUpcomingString(): String
-
-    fun getLanguage(): String
 }

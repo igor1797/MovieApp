@@ -43,18 +43,16 @@ class MovieDetailsViewModel(
         }
     }
 
-    fun getPrimaryInformationAboutMovie(movieId: Int, language: String) {
+    fun getPrimaryInformationAboutMovie(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val informationAboutMovieFlow =
-                movieRepository.getPrimaryInformationAboutMovie(movieId, language)
-            val castAndCrewForAMovieFlow =
-                movieRepository.getCastAndCrewForAMovie(movieId, language)
+            val informationAboutMovieFlow = movieRepository.getPrimaryInformationAboutMovie(movieId)
+            val castAndCrewForAMovieFlow = movieRepository.getCastAndCrewForAMovie(movieId)
 
-            informationAboutMovieFlow.collect { movieDetails -> _movieDetails.postValue(movieDetails) }
+            informationAboutMovieFlow.collect { movieDetails ->
+                _movieDetails.postValue(movieDetails)
+            }
             castAndCrewForAMovieFlow.collect { castAndCrewForAMovie ->
-                _movieCredits.postValue(
-                    castAndCrewForAMovie
-                )
+                _movieCredits.postValue(castAndCrewForAMovie)
             }
 
             val sessionId = authenticationRepository.getSessionId()

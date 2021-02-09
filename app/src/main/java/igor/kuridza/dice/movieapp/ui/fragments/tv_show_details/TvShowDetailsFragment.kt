@@ -35,7 +35,7 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
     override fun getLayoutResourceId(): Int = R.layout.tv_show_details_fragment
 
     override fun setUpUi() {
-        getPrimaryInformationAboutTvShow(args.tvShowId, DEFAULT_LANGUAGE)
+        getPrimaryInformationAboutTvShow(args.tvShowId)
         setUpRecycler()
         observeMovieDetails()
         setPosterImageTransition()
@@ -126,8 +126,8 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
         controller.navigate(R.id.authentication_navigation)
     }
 
-    private fun getPrimaryInformationAboutTvShow(tvShowId: Int, language: String) {
-        viewModel.getPrimaryInformationAboutTvShow(tvShowId, language)
+    private fun getPrimaryInformationAboutTvShow(tvShowId: Int) {
+        viewModel.getPrimaryInformationAboutTvShow(tvShowId)
     }
 
     private fun initAppBarStateChangeListener() {

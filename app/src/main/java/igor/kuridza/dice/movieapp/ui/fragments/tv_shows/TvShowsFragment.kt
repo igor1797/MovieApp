@@ -47,7 +47,7 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
 
     private fun observeSelectedCategory() {
         viewModel.category.observe(viewLifecycleOwner) { category ->
-            getTvShowsByType(category, DEFAULT_LANGUAGE)
+            getTvShowsByType(category)
             binding.toolbar.title = viewModel.getCategoryNameByKey(category)
             setCategoryChecked(category)
         }
@@ -90,8 +90,8 @@ class TvShowsFragment : BaseFragment<TvShowsFragmentBinding>(), TvShowClickListe
         return true
     }
 
-    private fun getTvShowsByType(tvShowsType: String, language: String) {
-        viewModel.getTvShowsByType(tvShowsType, language)
+    private fun getTvShowsByType(tvShowsType: String) {
+        viewModel.getTvShowsByType(tvShowsType)
     }
 
     private fun observeTvShows() {

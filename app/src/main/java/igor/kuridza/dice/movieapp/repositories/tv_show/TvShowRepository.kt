@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface TvShowRepository {
 
-    fun getTvShowsByType(tvShowType: String, language: String): Flow<Resource<GetTvShowsResponse>>
+    fun getTvShowsByType(tvShowType: String): Flow<Resource<GetTvShowsResponse>>
 
-    fun getPrimaryTvShowDetailsById(tvShowId: Int, language: String): Flow<Resource<TvShowDetails>>
+    fun getPrimaryTvShowDetailsById(tvShowId: Int): Flow<Resource<TvShowDetails>>
 
-    fun getCastAndCrewForTvShow(tvShowId: Int, language: String): Flow<Resource<GetCreditsResponse>>
+    fun getCastAndCrewForTvShow(tvShowId: Int): Flow<Resource<GetCreditsResponse>>
 
-    fun searchTvShows(searchQuery: String, language: String): Flow<Resource<GetTvShowsResponse>>
+    fun searchTvShows(searchQuery: String): Flow<Resource<GetTvShowsResponse>>
 
     fun getImagesThatBelongToTvShow(tvShowId: Int): Flow<Resource<GetImagesResponse>>
 

@@ -33,9 +33,9 @@ class MoviesViewModel(
     val movies: LiveData<Resource<GetMoviesResponse>>
         get() = mMovies
 
-    fun getMoviesByType(type: String, language: String) {
+    fun getMoviesByType(type: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            movieRepository.getMoviesByType(type, language).collect { data ->
+            movieRepository.getMoviesByType(type).collect { data ->
                 mMovies.postValue(data)
             }
         }
@@ -43,9 +43,5 @@ class MoviesViewModel(
 
     fun changeCategory(movieCategory: String) {
         _category.value = movieCategory
-    }
-
-    fun getLanguage(): String {
-        return movieRepository.getLanguage()
     }
 }

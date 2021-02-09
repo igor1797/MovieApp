@@ -19,9 +19,9 @@ class SearchMoviesViewModel(
     val movies: LiveData<Resource<GetMoviesResponse>>
         get() = mMovies
 
-    fun searchMoviesByQuery(searchQuery: String, language: String) {
+    fun searchMoviesByQuery(searchQuery: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            movieRepository.searchMovies(searchQuery, language).collect { data ->
+            movieRepository.searchMovies(searchQuery).collect { data ->
                 mMovies.postValue(data)
             }
         }

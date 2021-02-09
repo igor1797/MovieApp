@@ -1,5 +1,6 @@
 package igor.kuridza.dice.movieapp.ui.fragments.authentication
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -19,9 +19,9 @@ class SearchTvShowsViewModel(
     val tvShows: LiveData<Resource<GetTvShowsResponse>>
         get() = _tvShows
 
-    fun searchTvShowsByQuery(searchQuery: String, language: String) {
+    fun searchTvShowsByQuery(searchQuery: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            tvShowRepository.searchTvShows(searchQuery, language).collect { data ->
+            tvShowRepository.searchTvShows(searchQuery).collect { data ->
                 _tvShows.postValue(data)
             }
         }

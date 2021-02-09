@@ -1,7 +1,6 @@
 package igor.kuridza.dice.movieapp.ui.fragments.movie_details
 
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -164,7 +163,7 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsFragmentBinding>(), Person
     }
 
     private fun getPrimaryInformationAboutMovie(movieId: Int) {
-        viewModel.getPrimaryInformationAboutMovie(movieId, DEFAULT_LANGUAGE)
+        viewModel.getPrimaryInformationAboutMovie(movieId)
     }
 
     private fun observeMovieDetails() {

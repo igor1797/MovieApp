@@ -1,6 +1,7 @@
 package igor.kuridza.dice.movieapp.utils.resource
 
 import android.content.Context
+import androidx.core.os.ConfigurationCompat
 import igor.kuridza.dice.movieapp.R
 
 class ResourceHelperImpl(private val applicationContext: Context) : ResourceHelper {

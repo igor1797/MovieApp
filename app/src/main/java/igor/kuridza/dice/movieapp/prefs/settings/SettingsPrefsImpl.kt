@@ -1,8 +1,8 @@
 package igor.kuridza.dice.movieapp.prefs.settings
 
 import android.content.Context
+import androidx.core.os.ConfigurationCompat
 import androidx.preference.PreferenceManager
-import igor.kuridza.dice.movieapp.common.CROATIAN_LANGUAGE
 import igor.kuridza.dice.movieapp.common.DEFAULT_LANGUAGE
 
 private const val LANGUAGE_KEY = "language"
@@ -15,8 +15,13 @@ class SettingsPrefsImpl(private val context: Context) : SettingsPrefs {
 
     override fun getLanguage(): String {
         val itNeedsToBeTranslated = sharedPreferences.getBoolean(LANGUAGE_KEY, false)
+        val language =
+            ConfigurationCompat.getLocales(context.resources.configuration)[0].isO3Language.substring(
+                0,
+                2
+            )
         return if (itNeedsToBeTranslated) {
-            CROATIAN_LANGUAGE
+            language
         } else
             DEFAULT_LANGUAGE
     }

@@ -27,6 +27,7 @@
                     android:layout_alignParentEnd="true"
                     app:iconifiedByDefault="false"
                     android:focusable="true"
+                    android:textAlignment="viewStart"
                     app:queryHint="@string/searchHintText" />
             </RelativeLayout>
 

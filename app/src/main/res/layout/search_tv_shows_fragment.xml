@@ -25,6 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:textAlignment="viewStart"
                     app:queryHint="@string/searchHintText" />
             </RelativeLayout>
         </com.google.android.material.appbar.MaterialToolbar>

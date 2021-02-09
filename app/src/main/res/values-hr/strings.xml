@@ -47,6 +47,10 @@
     <string name="languageDescriptionText">Ovo će prevesti sve podatke na vaš jezik ako postoji prijevod</string>
     <string name="searchHintText">Traži…</string>
     <string name="loginPopUpTitleMessageText">Trebate biti prijavljeni kako bi mogli dati ocjenu!</string>
+    <string name="usernameHintText">Korisničko ime</string>
+    <string name="passwordHintText">Lozinka</string>
+    <string name="loginButtonText">Prijava</string>
+    <string name="skipLoginText">Preskoči prijavu…</string>
 
     <string-array name="theme_entries">
         <item>Svijetlo</item>

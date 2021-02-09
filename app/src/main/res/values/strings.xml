@@ -49,6 +49,10 @@
     <string name="successfullyUpdatedRatingMessageText">Successfully updated rating</string>
     <string name="errorOccurredMessageText">An error occurred!!!</string>
     <string name="loginPopUpTitleMessageText">You need to be logged in to be able to rate!</string>
+    <string name="usernameHintText">Username</string>
+    <string name="passwordHintText">Password</string>
+    <string name="loginButtonText">Login</string>
+    <string name="skipLoginText">Skip login…</string>
 
     <string-array name="theme_entries">
         <item>Light</item>

@@ -75,7 +75,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/rateText"
                         android:textStyle="bold"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@id/movieImage"
                         app:layout_constraintStart_toStartOf="@id/star"
                         app:layout_constraintEnd_toEndOf="@id/star" />
@@ -100,19 +100,19 @@
                         app:layout_constraintStart_toStartOf="@id/star"
                         android:visibility="gone" />
 
-
                     <TextView
                         android:id="@+id/movieTitle"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
-                        android:gravity="center|start"
                         android:text="@{movieDetails.title}"
                         android:textSize="20sp"
+                        android:textAlignment="viewStart"
+                        android:gravity="start|center"
                         android:textStyle="bold|italic"
-                        app:layout_constraintBottom_toBottomOf="@id/movieImage"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/movieImage"
                         app:layout_constraintStart_toEndOf="@id/star"
                         app:layout_constraintTop_toBottomOf="@id/movieImageHeader" />
 
@@ -159,13 +159,13 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         android:ellipsize="end"
-                        android:gravity="center|start"
                         android:maxLines="2"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@id/movieImageHeader"
+                        android:textAlignment="viewStart"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/movieImageHeader"
                         app:layout_constraintStart_toEndOf="@id/dot" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -251,8 +251,7 @@
                     android:text="@string/quoteText"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="24dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tmdbRatingText"
                     app:layout_constraintTop_toBottomOf="@id/tmdbRating" />
 
                 <TextView
@@ -264,6 +263,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/quoteText"
                     app:layout_constraintTop_toBottomOf="@id/quoteText" />
@@ -273,11 +273,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginStart="24dp"
                     android:text="@string/descriptionText"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tmdbRatingText"
                     app:layout_constraintTop_toBottomOf="@id/movieQuote" />
 
                 <TextView
@@ -288,6 +287,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{movieDetails.overview}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/descriptionText"
                     app:layout_constraintTop_toBottomOf="@id/descriptionText" />
@@ -308,6 +308,7 @@
                     android:text="@string/originalTitleText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/originalLanguageText"
                     app:layout_constraintStart_toStartOf="@id/descriptionText"
                     app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
@@ -320,6 +321,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="@{movieDetails.originalTitle}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/originalLanguage"
                     app:layout_constraintStart_toStartOf="@id/originalTitleText"
                     app:layout_constraintTop_toBottomOf="@id/originalTitleText" />
@@ -329,9 +331,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/originalLanguageText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/originalTitleText"
                     app:layout_constraintTop_toBottomOf="@id/dividerBelowDescription" />
@@ -344,6 +348,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{movieDetails.originalLanguage}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/originalLanguageText"
                     app:layout_constraintTop_toBottomOf="@id/originalLanguageText" />
@@ -357,6 +362,7 @@
                     android:text="@string/budgetText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/releaseDateText"
                     app:layout_constraintStart_toStartOf="@id/originalTitle"
                     app:layout_constraintTop_toBottomOf="@id/originalTitle" />
@@ -369,6 +375,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/releaseDate"
                     app:layout_constraintStart_toStartOf="@id/budgetText"
                     app:layout_constraintTop_toBottomOf="@id/budgetText" />
@@ -380,6 +387,7 @@
                     android:text="@string/releaseDateText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintBaseline_toBaselineOf="@+id/budgetText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/originalLanguage" />
@@ -392,6 +400,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{movieDetails.releaseDate}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@id/releaseDateText"
@@ -406,6 +415,7 @@
                     android:text="@string/statusText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/releaseDateText"
                     app:layout_constraintStart_toStartOf="@id/budgetText"
                     app:layout_constraintTop_toBottomOf="@id/budgetValue" />
@@ -418,6 +428,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{movieDetails.status}"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toStartOf="@id/adult"
                     app:layout_constraintStart_toStartOf="@id/statusText"
                     app:layout_constraintTop_toBottomOf="@id/statusText" />
@@ -429,6 +440,7 @@
                     android:text="@string/adultText"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textAlignment="viewStart"
                     app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/releaseDateText" />
@@ -441,6 +453,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="16sp"
+                    android:textAlignment="viewStart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/adultText"
                     app:layout_constraintTop_toBottomOf="@id/adultText" />

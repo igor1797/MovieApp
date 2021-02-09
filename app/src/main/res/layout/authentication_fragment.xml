@@ -35,7 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Username"
+            android:hint="@string/usernameHintText"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
+                android:textAlignment="viewStart"
                 android:inputType="text"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Password"
+            android:hint="@string/passwordHintText"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="textPassword"
+                android:textAlignment="viewStart"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +81,7 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/colorLightBlue"
             android:enabled="@{viewModel.loginFormState.dataValid}"
-            android:text="Login"
+            android:text="@string/loginButtonText"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -94,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Skip login..."
+            android:text="@string/skipLoginText"
             android:textColor="@color/colorLightBlue"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@id/login"

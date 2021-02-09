@@ -41,11 +41,10 @@ class TvShowDetailsViewModel(
         }
     }
 
-    fun getPrimaryInformationAboutTvShow(tvShowId: Int, language: String) {
+    fun getPrimaryInformationAboutTvShow(tvShowId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            val primaryTvShowDetailsFlow =
-                tvShowRepository.getPrimaryTvShowDetailsById(tvShowId, language)
-            val castAndCrewFlow = tvShowRepository.getCastAndCrewForTvShow(tvShowId, language)
+            val primaryTvShowDetailsFlow = tvShowRepository.getPrimaryTvShowDetailsById(tvShowId)
+            val castAndCrewFlow = tvShowRepository.getCastAndCrewForTvShow(tvShowId)
             primaryTvShowDetailsFlow.collect { primaryTvSHowDetails ->
                 _tvShowDetails.postValue(
                     primaryTvSHowDetails

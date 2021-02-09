@@ -15,7 +15,7 @@ val repositoryModule = module {
     }
 
     single<TvShowRepository> {
-        TvShowRepositoryImpl(get())
+        TvShowRepositoryImpl(get(), get())
     }
 
     single<AuthenticationRepository> {
