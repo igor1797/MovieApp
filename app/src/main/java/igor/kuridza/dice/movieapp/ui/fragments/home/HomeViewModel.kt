@@ -1,17 +1,13 @@
 package igor.kuridza.dice.movieapp.ui.fragments.home
 
 import androidx.lifecycle.ViewModel
-import igor.kuridza.dice.movieapp.prefs.user.UserPrefs
+import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepository
 
 class HomeViewModel(
-    private val userPrefs: UserPrefs
+    private val authenticationRepository: AuthenticationRepository
 ) : ViewModel() {
 
-    fun isUserSkippedLogin(): Boolean {
-        return userPrefs.isUserSkippedLogin()
-    }
+    fun isUserSkippedLogin(): Boolean = authenticationRepository.isUserSkippedLogin()
 
-    fun isUserLoggedIn(): Boolean {
-        return userPrefs.get().isNotEmpty()
-    }
+    fun isUserLoggedIn(): Boolean = authenticationRepository.isUserLoggedIn()
 }

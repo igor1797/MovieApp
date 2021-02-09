@@ -7,22 +7,18 @@ import igor.kuridza.dice.movieapp.common.UPCOMING
 import igor.kuridza.dice.movieapp.model.movie.GetMoviesResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
-import igor.kuridza.dice.movieapp.prefs.settings.SettingsPrefs
-import igor.kuridza.dice.movieapp.utils.resource.ResourceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MoviesViewModel(
-    private val movieRepository: MovieRepository,
-    private val settingsPrefs: SettingsPrefs,
-    private val resourceHelper: ResourceHelper
+    private val movieRepository: MovieRepository
 ): ViewModel() {
 
     private val categories = mapOf(
-        TOP_RATED to resourceHelper.topRatedString(),
-        POPULAR to resourceHelper.popularString(),
-        UPCOMING to resourceHelper.upcomingString()
+        TOP_RATED to movieRepository.getTopRatedString(),
+        POPULAR to movieRepository.getPopularString(),
+        UPCOMING to movieRepository.getUpcomingString()
     )
 
     fun getCategoryNameByKey(category: String): String {
@@ -50,6 +46,6 @@ class MoviesViewModel(
     }
 
     fun getLanguage(): String {
-        return settingsPrefs.getLanguage()
+        return movieRepository.getLanguage()
     }
 }

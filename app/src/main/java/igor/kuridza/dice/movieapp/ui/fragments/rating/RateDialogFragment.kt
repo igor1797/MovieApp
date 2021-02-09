@@ -23,6 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class RateDialogFragment : DialogFragment() {
 
     private val viewModel: RateViewModel by viewModel()
+
     private lateinit var binding: RateDialogFragmentBinding
     private val args: RateDialogFragmentArgs by navArgs()
     private var rateListener: RateListener? = null

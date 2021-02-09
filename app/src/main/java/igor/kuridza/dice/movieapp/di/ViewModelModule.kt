@@ -15,7 +15,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel {
-        MoviesViewModel(get(), get(), get())
+        MoviesViewModel(get())
     }
 
     viewModel {
@@ -43,7 +43,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        AuthenticationViewModel(get(), get(), get())
+        AuthenticationViewModel(get())
     }
 
     viewModel {

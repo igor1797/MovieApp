@@ -1,13 +1,12 @@
 package igor.kuridza.dice.movieapp.ui.fragments.rating
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import igor.kuridza.dice.movieapp.model.message.MessageResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
-import igor.kuridza.dice.movieapp.prefs.user.UserPrefs
+import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepository
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
 import igor.kuridza.dice.movieapp.repositories.tv_show.TvShowRepository
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +16,7 @@ import kotlinx.coroutines.launch
 class RateViewModel(
     private val movieRepository: MovieRepository,
     private val tvShowRepository: TvShowRepository,
-    private val userPrefs: UserPrefs
+    private val authenticationRepository: AuthenticationRepository
 ) : ViewModel() {
 
     private var rating = 0F
@@ -28,7 +27,7 @@ class RateViewModel(
 
     fun rateMovie(movieId: Int, ratingValue: Number) {
         viewModelScope.launch(Dispatchers.IO) {
-            val sessionId = userPrefs.get()
+            val sessionId = authenticationRepository.getSessionId()
             movieRepository.rateMovie(movieId, sessionId, ratingValue).collect { data ->
                 _rateMessageResponse.postValue(data)
             }
@@ -37,7 +36,7 @@ class RateViewModel(
 
     fun rateTvShow(tvShowId: Int, ratingValue: Number) {
         viewModelScope.launch(Dispatchers.IO) {
-            val sessionId = userPrefs.get()
+            val sessionId = authenticationRepository.getSessionId()
             tvShowRepository.rateTvShow(tvShowId, sessionId, ratingValue).collect { data ->
                 _rateMessageResponse.postValue(data)
             }

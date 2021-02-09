@@ -33,6 +33,9 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
     private fun setBottomNav() {
         val navController: NavController =
             Navigation.findNavController(requireView().findViewById(R.id.bottomNavHostFragment))
-        binding.bottomNav.setupWithNavController(navController)
+        binding.bottomNav.apply {
+            setupWithNavController(navController)
+            setOnNavigationItemReselectedListener { }
+        }
     }
 }

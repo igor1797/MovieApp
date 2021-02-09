@@ -34,4 +34,12 @@ interface MovieRepository {
         movieId: Int,
         sessionId: String
     ): Flow<Resource<AccountStatesResponse>>
+
+    fun getTopRatedString(): String
+
+    fun getPopularString(): String
+
+    fun getUpcomingString(): String
+
+    fun getLanguage(): String
 }

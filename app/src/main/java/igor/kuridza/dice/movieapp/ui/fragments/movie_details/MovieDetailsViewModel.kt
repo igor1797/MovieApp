@@ -4,20 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import igor.kuridza.dice.movieapp.model.person.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.movie.MovieDetails
+import igor.kuridza.dice.movieapp.model.person.GetCreditsResponse
 import igor.kuridza.dice.movieapp.model.rating.AccountStatesResponse
 import igor.kuridza.dice.movieapp.model.resource.Resource
-import igor.kuridza.dice.movieapp.prefs.user.UserPrefs
+import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepository
 import igor.kuridza.dice.movieapp.repositories.movie.MovieRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
     private val movieRepository: MovieRepository,
-    private val userPrefs: UserPrefs
+    private val authenticationRepository: AuthenticationRepository
 ) : ViewModel() {
 
     private val _movieDetails = MutableLiveData<Resource<MovieDetails>>()
@@ -32,32 +31,35 @@ class MovieDetailsViewModel(
     val accountState: LiveData<Resource<AccountStatesResponse>>
         get() = _accountState
 
+    val rating = MutableLiveData<Float>()
+
     fun isUserLoggedIn(): Boolean {
-        return userPrefs.get().isNotEmpty()
+        return authenticationRepository.isUserLoggedIn()
     }
 
     fun onLoginClicked() {
-        userPrefs.userSkippedLogin(false)
+        viewModelScope.launch(Dispatchers.IO) {
+            authenticationRepository.userSkippedLogin(false)
+        }
     }
 
     fun getPrimaryInformationAboutMovie(movieId: Int, language: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            async {
-                movieRepository.getPrimaryInformationAboutMovie(movieId, language).collect { data ->
-                    _movieDetails.postValue(data)
-                }
+            val informationAboutMovieFlow =
+                movieRepository.getPrimaryInformationAboutMovie(movieId, language)
+            val castAndCrewForAMovieFlow =
+                movieRepository.getCastAndCrewForAMovie(movieId, language)
+
+            informationAboutMovieFlow.collect { movieDetails -> _movieDetails.postValue(movieDetails) }
+            castAndCrewForAMovieFlow.collect { castAndCrewForAMovie ->
+                _movieCredits.postValue(
+                    castAndCrewForAMovie
+                )
             }
-            async {
-                movieRepository.getCastAndCrewForAMovie(movieId, language).collect { data ->
-                    _movieCredits.postValue(data)
-                }
-            }
-            val sessionId = userPrefs.get()
-            async {
-                movieRepository.getAccountStatesForMovie(movieId, sessionId).collect { data ->
-                    _accountState.postValue(data)
-                }
-            }
+
+            val sessionId = authenticationRepository.getSessionId()
+            val accountStatesFlow = movieRepository.getAccountStatesForMovie(movieId, sessionId)
+            accountStatesFlow.collect { accountStates -> _accountState.postValue(accountStates) }
         }
     }
 }

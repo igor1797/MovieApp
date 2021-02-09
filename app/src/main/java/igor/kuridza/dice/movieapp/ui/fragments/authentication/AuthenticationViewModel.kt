@@ -8,17 +8,13 @@ import igor.kuridza.dice.movieapp.model.auth.GetRequestToken
 import igor.kuridza.dice.movieapp.model.auth.GetSessionId
 import igor.kuridza.dice.movieapp.model.auth.LoginFormState
 import igor.kuridza.dice.movieapp.model.resource.Resource
-import igor.kuridza.dice.movieapp.prefs.user.UserPrefs
 import igor.kuridza.dice.movieapp.repositories.auth.AuthenticationRepository
-import igor.kuridza.dice.movieapp.utils.resource.ResourceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AuthenticationViewModel(
-    private val authenticationRepository: AuthenticationRepository,
-    private val userPrefs: UserPrefs,
-    private val resourceHelper: ResourceHelper
+    private val authenticationRepository: AuthenticationRepository
 ) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
@@ -54,7 +50,7 @@ class AuthenticationViewModel(
 
     fun saveValueInPrefs(value: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            userPrefs.put(value)
+            authenticationRepository.saveUserSessionId(value)
         }
     }
 
@@ -69,10 +65,10 @@ class AuthenticationViewModel(
     fun loginDataChanged(username: String, password: String) {
         if (!isUserNameValid(username)) {
             _loginForm.value =
-                LoginFormState(usernameError = resourceHelper.invalidUsernameStringId())
+                LoginFormState(usernameError = authenticationRepository.getUserInvalidUsernameStringId())
         } else if (!isPasswordValid(password)) {
             _loginForm.value =
-                LoginFormState(passwordError = resourceHelper.invalidPasswordStringId())
+                LoginFormState(passwordError = authenticationRepository.getInvalidPasswordStringId())
         } else {
             _loginForm.value = LoginFormState(isDataValid = true)
         }
@@ -80,7 +76,7 @@ class AuthenticationViewModel(
 
     fun userSkippedLogin() {
         viewModelScope.launch(Dispatchers.IO) {
-            userPrefs.userSkippedLogin(true)
+            authenticationRepository.userSkippedLogin(true)
         }
     }
 
