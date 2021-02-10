@@ -1,6 +1,7 @@
 package igor.kuridza.dice.movieapp.ui.fragments.authentication
 
-import android.util.Log
+import android.content.Intent
+import android.net.Uri
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import igor.kuridza.dice.movieapp.R
@@ -15,6 +16,7 @@ import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class AuthenticationFragment : BaseFragment<AuthenticationFragmentBinding>() {
 
@@ -31,6 +33,7 @@ class AuthenticationFragment : BaseFragment<AuthenticationFragmentBinding>() {
         monitorsInputChanges()
         setLoginOnClickListener()
         setSkipLoginOnClickListener()
+        setGoToRegisterOnClickListener()
     }
 
     private fun monitorsInputChanges() {
@@ -42,6 +45,18 @@ class AuthenticationFragment : BaseFragment<AuthenticationFragmentBinding>() {
                 authViewModel.loginDataChanged(it.toString(), passwordInput.text.toString())
             }
         }
+    }
+
+    private fun setGoToRegisterOnClickListener() {
+        binding.goToRegister.setOnClickListener {
+            openBrowserToRegister()
+        }
+    }
+
+    private fun openBrowserToRegister() {
+        val browserIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.themoviedb.org/signup"))
+        startActivity(browserIntent)
     }
 
     private fun setSkipLoginOnClickListener() {

@@ -53,6 +53,7 @@
     <string name="passwordHintText">Password</string>
     <string name="loginButtonText">Login</string>
     <string name="skipLoginText">Skip login…</string>
+    <string name="goToRegisterText">Not a member? Sign up now.</string>
 
     <string-array name="theme_entries">
         <item>Light</item>

@@ -11,14 +11,14 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     single<MovieRepository> {
-        MovieRepositoryImpl(get(), get(), get())
+        MovieRepositoryImpl(get(), get(), get(), get())
     }
 
     single<TvShowRepository> {
-        TvShowRepositoryImpl(get(), get())
+        TvShowRepositoryImpl(get(), get(), get())
     }
 
     single<AuthenticationRepository> {
-        AuthenticationRepositoryImpl(get(), get(), get())
+        AuthenticationRepositoryImpl(get(), get(), get(), get())
     }
 }

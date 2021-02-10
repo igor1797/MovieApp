@@ -1,6 +1,8 @@
 package igor.kuridza.dice.movieapp.ui.fragments.movie_details
 
 import android.os.Bundle
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -43,12 +45,30 @@ class MovieDetailsFragment : BaseFragment<MovieDetailsFragmentBinding>(), Person
         setMoviePosterOnClickListener()
         setStartOnClickListener()
         observeAccountState()
+        listenRatingValue()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
+    private fun listenRatingValue() {
+        val navController = findNavController()
+        val navBackStackEntry = navController.getBackStackEntry(R.id.movieDetailsFragment)
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry.savedStateHandle.contains("RATING")) {
+                val result = navBackStackEntry.savedStateHandle.get<String>("RATING");
+                binding.userMovieRating.text = result
+            }
+        }
+        navBackStackEntry.lifecycle.addObserver(observer)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(observer)
+            }
+        })
     }
 
     private fun observeAccountState() {

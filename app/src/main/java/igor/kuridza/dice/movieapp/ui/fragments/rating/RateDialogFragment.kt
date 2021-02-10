@@ -61,7 +61,15 @@ class RateDialogFragment : DialogFragment() {
                 else
                     rateTvShow(args.id, rating as Number)
             }
+            sendBackRatingValue(rating)
         }
+    }
+
+    private fun sendBackRatingValue(rating: Float) {
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(
+            "RATING",
+            rating.toString()
+        )
     }
 
     private fun setRatingStarsOnRatingChangeListener() {

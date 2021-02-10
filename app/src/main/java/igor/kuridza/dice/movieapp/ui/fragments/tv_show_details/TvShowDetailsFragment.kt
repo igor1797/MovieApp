@@ -2,6 +2,8 @@ package igor.kuridza.dice.movieapp.ui.fragments.tv_show_details
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -12,17 +14,15 @@ import igor.kuridza.dice.movieapp.common.*
 import igor.kuridza.dice.movieapp.databinding.TvShowDetailsFragmentBinding
 import igor.kuridza.dice.movieapp.model.person.Person
 import igor.kuridza.dice.movieapp.model.rating.AccountStatesResponse
-import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.model.resource.Error
 import igor.kuridza.dice.movieapp.model.resource.Loading
 import igor.kuridza.dice.movieapp.model.resource.Success
+import igor.kuridza.dice.movieapp.model.tv_show.TvShowDetails
 import igor.kuridza.dice.movieapp.ui.activities.MainActivity
 import igor.kuridza.dice.movieapp.ui.adapters.person.PersonAdapter
 import igor.kuridza.dice.movieapp.ui.adapters.person.PersonClickListener
 import igor.kuridza.dice.movieapp.ui.fragments.base.BaseFragment
 import igor.kuridza.dice.movieapp.ui.fragments.movie_details.AppBarStateChangeListener
-import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragmentDirections
-import igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragmentDirections.goToRateDialogFragment
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), PersonClickListener {
@@ -44,12 +44,30 @@ class TvShowDetailsFragment : BaseFragment<TvShowDetailsFragmentBinding>(), Pers
         setTvShowPosterOnClickListener()
         observeAccountState()
         setStartOnClickListener()
+        listenRatingValue()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
+    private fun listenRatingValue() {
+        val navController = findNavController()
+        val navBackStackEntry = navController.getBackStackEntry(R.id.tvShowDetailsFragment)
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry.savedStateHandle.contains("RATING")) {
+                val result = navBackStackEntry.savedStateHandle.get<String>("RATING");
+                binding.userTvShowRating.text = result
+            }
+        }
+        navBackStackEntry.lifecycle.addObserver(observer)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(observer)
+            }
+        })
     }
 
     private fun setUpRecycler() {
