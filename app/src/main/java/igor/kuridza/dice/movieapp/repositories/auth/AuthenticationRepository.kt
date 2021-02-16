@@ -2,20 +2,20 @@ package igor.kuridza.dice.movieapp.repositories.auth
 
 import igor.kuridza.dice.movieapp.model.auth.GetRequestToken
 import igor.kuridza.dice.movieapp.model.auth.GetSessionId
-import igor.kuridza.dice.movieapp.model.resource.Resource
+import igor.kuridza.dice.movieapp.model.view_state.ViewState
 import kotlinx.coroutines.flow.Flow
 
 interface AuthenticationRepository {
 
-    fun createRequestToken(): Flow<Resource<GetRequestToken>>
+    fun createRequestToken(): Flow<ViewState<GetRequestToken>>
 
     fun login(
         username: String,
         password: String,
         requestToken: String
-    ): Flow<Resource<GetRequestToken>>
+    ): Flow<ViewState<GetRequestToken>>
 
-    fun createSessionId(requestToken: String): Flow<Resource<GetSessionId>>
+    fun createSessionId(requestToken: String): Flow<ViewState<GetSessionId>>
 
     suspend fun saveUserSessionId(sessionId: String)
 

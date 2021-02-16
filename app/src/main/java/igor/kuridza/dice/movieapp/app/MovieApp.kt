@@ -14,7 +14,7 @@ class MovieApp: Application(){
             modules(
                 listOf(
                     networkingModule,
-                    viewModelModule,
+                    presentationModule,
                     repositoryModule,
                     preferencesModule,
                     utilsModule

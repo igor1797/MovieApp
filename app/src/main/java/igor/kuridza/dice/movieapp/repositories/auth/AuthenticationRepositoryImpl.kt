@@ -6,11 +6,11 @@ import igor.kuridza.dice.movieapp.model.auth.AuthRequest
 import igor.kuridza.dice.movieapp.model.auth.GetRequestToken
 import igor.kuridza.dice.movieapp.model.auth.GetSessionId
 import igor.kuridza.dice.movieapp.model.auth.RequestToken
-import igor.kuridza.dice.movieapp.model.resource.Error
-import igor.kuridza.dice.movieapp.model.resource.Resource
+import igor.kuridza.dice.movieapp.model.view_state.Error
+import igor.kuridza.dice.movieapp.model.view_state.ViewState
 import igor.kuridza.dice.movieapp.networking.AuthenticationService
 import igor.kuridza.dice.movieapp.prefs.user.UserPrefs
-import igor.kuridza.dice.movieapp.utils.resource.ResourceHelper
+import igor.kuridza.dice.movieapp.common.utils.resource.ResourceHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -21,7 +21,7 @@ class AuthenticationRepositoryImpl(
     private val connectivity: Connectivity
 ) : AuthenticationRepository {
 
-    override fun createRequestToken(): Flow<Resource<GetRequestToken>> {
+    override fun createRequestToken(): Flow<ViewState<GetRequestToken>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { authenticationService.createRequestToken() }
         else
@@ -32,7 +32,7 @@ class AuthenticationRepositoryImpl(
         username: String,
         password: String,
         requestToken: String
-    ): Flow<Resource<GetRequestToken>> {
+    ): Flow<ViewState<GetRequestToken>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest {
                 authenticationService.validateRequestTokenWithUserNameAndPassword(
@@ -43,7 +43,7 @@ class AuthenticationRepositoryImpl(
             flow { emit(Error(NO_INTERNET_CONNECTION_MESSAGE)) }
     }
 
-    override fun createSessionId(requestToken: String): Flow<Resource<GetSessionId>> {
+    override fun createSessionId(requestToken: String): Flow<ViewState<GetSessionId>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { authenticationService.createNewSessionId(RequestToken(requestToken)) }
         else

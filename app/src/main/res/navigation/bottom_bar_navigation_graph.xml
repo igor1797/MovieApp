@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.movies.MoviesFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.movies.list.view.MoviesFragment"
         android:label="MoviesFragment"
         tools:layout="@layout/movies_fragment" />
 
     <fragment
         android:id="@+id/tvShowsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_shows.TvShowsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.tv_shows.list.view.TvShowsFragment"
         android:label="TvShowsFragment"
         tools:layout="@layout/tv_shows_fragment" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.settings.SettingsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.settings.view.SettingsFragment"
         android:label="SettingsFragment" />
 
 </navigation>

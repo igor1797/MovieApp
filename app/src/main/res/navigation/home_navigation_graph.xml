@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.movie_details.MovieDetailsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.movie_details.view.MovieDetailsFragment"
         android:label="MovieDetailsFragment"
         tools:layout="@layout/movie_details_fragment">
 
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/tvShowDetailsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.tv_show_details.TvShowDetailsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.tv_show_details.view.TvShowDetailsFragment"
         android:label="tv_show_details_fragment"
         tools:layout="@layout/tv_show_details_fragment">
 
@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/imageFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.images.ImageFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.poster_images.view.ImageFragment"
         android:label="ImageFragment"
         tools:layout="@layout/image_fragment">
 
@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.home.HomeFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.home.fragment.view.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment">
         <action
@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/searchMoviesFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.search.movies.SearchMoviesFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.movies.search.view.SearchMoviesFragment"
         android:label="search_movies_fragment"
         tools:layout="@layout/search_movies_fragment">
         <action
@@ -101,7 +101,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchTvShowsFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.search.tv_shows.SearchTvShowsFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.tv_shows.search.view.SearchTvShowsFragment"
         android:label="search_tv_shows_fragment"
         tools:layout="@layout/search_tv_shows_fragment">
         <action
@@ -110,7 +110,7 @@
     </fragment>
     <fragment
         android:id="@+id/personWikipediaInfoFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.person.PersonWikipediaInfoFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.person.view.PersonWikipediaInfoFragment"
         android:label="PersonWikipediaInfoFragment"
         tools:layout="@layout/person_wikipedia_info_fragment">
         <argument
@@ -123,7 +123,7 @@
         app:startDestination="@id/authenticationFragment">
         <fragment
             android:id="@+id/authenticationFragment"
-            android:name="igor.kuridza.dice.movieapp.ui.fragments.authentication.AuthenticationFragment"
+            android:name="igor.kuridza.dice.movieapp.ui.authentication.view.AuthenticationFragment"
             android:label="authentication_fragment"
             tools:layout="@layout/authentication_fragment" />
         <action
@@ -132,7 +132,7 @@
     </navigation>
     <dialog
         android:id="@+id/rateDialogFragment"
-        android:name="igor.kuridza.dice.movieapp.ui.fragments.rating.RateDialogFragment"
+        android:name="igor.kuridza.dice.movieapp.ui.rating.view.RateDialogFragment"
         android:label="rate_dialog_fragment"
         tools:layout="@layout/rate_dialog_fragment">
 

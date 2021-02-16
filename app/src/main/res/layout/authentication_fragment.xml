@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.fragments.authentication.AuthenticationFragment">
+    tools:context=".ui.authentication.view.AuthenticationFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="igor.kuridza.dice.movieapp.ui.fragments.authentication.AuthenticationViewModel" />
+            type="igor.kuridza.dice.movieapp.ui.authentication.presentation.AuthenticationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

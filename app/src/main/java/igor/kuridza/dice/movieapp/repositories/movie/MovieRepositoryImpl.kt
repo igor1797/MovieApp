@@ -9,11 +9,11 @@ import igor.kuridza.dice.movieapp.model.message.MessageResponse
 import igor.kuridza.dice.movieapp.model.movie.GetMoviesResponse
 import igor.kuridza.dice.movieapp.model.rating.AccountStatesResponse
 import igor.kuridza.dice.movieapp.model.rating.RatingValue
-import igor.kuridza.dice.movieapp.model.resource.Error
-import igor.kuridza.dice.movieapp.model.resource.Resource
+import igor.kuridza.dice.movieapp.model.view_state.Error
+import igor.kuridza.dice.movieapp.model.view_state.ViewState
 import igor.kuridza.dice.movieapp.networking.MovieApiService
 import igor.kuridza.dice.movieapp.prefs.settings.SettingsPrefs
-import igor.kuridza.dice.movieapp.utils.resource.ResourceHelper
+import igor.kuridza.dice.movieapp.common.utils.resource.ResourceHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -24,7 +24,7 @@ class MovieRepositoryImpl(
     private val connectivity: Connectivity
 ): MovieRepository {
 
-    override fun getMoviesByType(movieType: String): Flow<Resource<GetMoviesResponse>> {
+    override fun getMoviesByType(movieType: String): Flow<ViewState<GetMoviesResponse>> {
         val language = settingsPrefs.getLanguage()
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { movieApiService.getMoviesByType(movieType, language) }
@@ -32,7 +32,7 @@ class MovieRepositoryImpl(
             flow { emit(Error(NO_INTERNET_CONNECTION_MESSAGE)) }
     }
 
-    override fun searchMovies(searchQuery: String): Flow<Resource<GetMoviesResponse>> {
+    override fun searchMovies(searchQuery: String): Flow<ViewState<GetMoviesResponse>> {
         val language = settingsPrefs.getLanguage()
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { movieApiService.searchMovies(searchQuery, language) }
@@ -40,7 +40,7 @@ class MovieRepositoryImpl(
             flow { emit(Error(NO_INTERNET_CONNECTION_MESSAGE)) }
     }
 
-    override fun getPrimaryInformationAboutMovie(movieId: Int): Flow<Resource<MovieDetails>> {
+    override fun getPrimaryInformationAboutMovie(movieId: Int): Flow<ViewState<MovieDetails>> {
         val language = settingsPrefs.getLanguage()
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest {
@@ -53,7 +53,7 @@ class MovieRepositoryImpl(
             flow { emit(Error(NO_INTERNET_CONNECTION_MESSAGE)) }
     }
 
-    override fun getCastAndCrewForAMovie(movieId: Int): Flow<Resource<GetCreditsResponse>> {
+    override fun getCastAndCrewForAMovie(movieId: Int): Flow<ViewState<GetCreditsResponse>> {
         val language = settingsPrefs.getLanguage()
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { movieApiService.getCastAndCrewForAMovie(movieId, language) }
@@ -65,7 +65,7 @@ class MovieRepositoryImpl(
         movieId: Int,
         sessionId: String,
         ratingValue: Number
-    ): Flow<Resource<MessageResponse>> {
+    ): Flow<ViewState<MessageResponse>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest {
                 movieApiService.rateMovie(
@@ -81,14 +81,14 @@ class MovieRepositoryImpl(
     override fun getAccountStatesForMovie(
         movieId: Int,
         sessionId: String
-    ): Flow<Resource<AccountStatesResponse>> {
+    ): Flow<ViewState<AccountStatesResponse>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { movieApiService.getAccountStatesForMovie(movieId, sessionId) }
         else
             flow { emit(Error(NO_INTERNET_CONNECTION_MESSAGE)) }
     }
 
-    override fun getImagesThatBelongToMovie(movieId: Int): Flow<Resource<GetImagesResponse>> {
+    override fun getImagesThatBelongToMovie(movieId: Int): Flow<ViewState<GetImagesResponse>> {
         return if (connectivity.hasNetworkAccess())
             makeNetworkRequest { movieApiService.getImagesThatBelongToMovie(movieId) }
         else

@@ -10,7 +10,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.fragments.tv_shows.TvShowsFragment">
+            tools:context=".ui.tv_shows.list.view.TvShowsFragment">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
